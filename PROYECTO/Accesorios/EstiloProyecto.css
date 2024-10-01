@@ -181,8 +181,13 @@ body{
     background-color: #b2b2b2;
 }
 
+/* Pagina Productos */
 
+#btnProd{
+    color: #baff39;
+    border-color: #b2b2b2;
 
+}
 
 
 /* Pagina Registro */
@@ -191,7 +196,7 @@ body{
 #Registro{ background-image: url(Fondo.jpg);
     background-size:1500px;
     font-family: sans-serif;
-    }
+}
 
 .reg{
     position: absolute;
