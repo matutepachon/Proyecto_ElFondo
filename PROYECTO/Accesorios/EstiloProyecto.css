@@ -257,3 +257,7 @@ body{
     color: white;
 
 }
+
+body {
+    padding-top: 70px; /* Ajusta según la altura de tu navbar */
+}
