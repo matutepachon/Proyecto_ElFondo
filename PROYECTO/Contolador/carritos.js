@@ -68,7 +68,8 @@ function mostrarCarrito() {
         deleteButton.onclick = () => {
             carrito.eliminarProducto(producto.id); // Eliminar del carrito
             mostrarCarrito(); // Actualizar la visualización del carrito
-            alert(`${producto.nombre} ha sido eliminado del carrito.`);
+            setTimeout(`${producto.nombre} ha sido eliminado del carrito.`);
+            
         };
 
         // Agregar elementos al cuerpo de la tarjeta

@@ -11,7 +11,7 @@
     <main class="container-fluid">
         <div id="Arriba" class="fixed-top row align-items-center">
             <article id="Logo" class="col-3 col-md-1 d-flex align-items-center">
-                <a href="index.html">
+                <a href="index.html" class="text-decoration-none">
                     <h1 style="color: white;" class="align-items-center d-flex">
                         <img class="me-2 mb-2 mt-1" width="80px" src="../Accesorios/LogoBitnessGym.png" alt="Logo BitnessGym">
                         <span class="d-sm-inline d-none">BitnessGym</span>
@@ -22,22 +22,31 @@
             <article class="d-none d-md-block col-md-3"></article>
 
             <article class="col-9 col-md-8 d-flex justify-content-end align-items-center flex-wrap">
+
                 <a href="Sucursales.html">
                     <button id="Sucu" class="btn">Sucursal</button>
                 </a>
+
                 <a href="Productos.html" class="ms-2 mt-md-0">
                     <button id="btnProd" class="btn">Productos</button>
                 </a>
-                <a id="InicioSes" class="btn btn-primary me-2 ms-2 mt-3" href="Login.html">Iniciar Sesión</a>
+
+                <a href="carrito.html" class="me-2 ms-3"><img src="../Accesorios/carrito.svg" alt="Carrito"></a>
+
+                <a id="InicioSes" class="btn btn-primary me-2 ms-2 mt-2" href="Login.html">Iniciar Sesión</a>
 
                 <div class="dropdown" id="dropdown">
-                    <button class="btn dropdown-toggle ms-2 me-2" type="button" id="nomUsu" data-bs-toggle="dropdown" aria-expanded="false"></button>
+                    <button class="btn dropdown-toggle ms-1 me-2" type="button" id="nomUsu" data-bs-toggle="dropdown" aria-expanded="false"></button>
                     <ul class="dropdown-menu menuDsp" aria-labelledby="dropdownMenuButton">
                         <li><a class="dropdown-item btn" href="admin.html" id="rootmenu">Menu root</a></li>
                         <li><a class="dropdown-item btn" id="btnCerrSes">Cerrar sesión</a></li>
                     </ul>
                 </div>
+
+                
+
             </article>
+
         </div>
 
         <!-- Ajustar el margen superior aquí -->
@@ -46,7 +55,7 @@
                 <!-- Aquí se cargarán las tarjetas de productos -->
             </div>
         </div>
-<button class="btn btn-dark"><a href="carrito.html" class="text-decoration-none"> Ver mi carrito</a></button>
+
         <footer id="PieDePag" class="text-center">
             <p class="text-center overflow-auto">Puede contactar con los desarrolladores en elfondo2024@gmail.com</p>
             <p>Copyright© UTU Pando. Derechos reservados.</p>

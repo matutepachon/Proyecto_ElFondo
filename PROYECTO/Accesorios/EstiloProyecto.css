@@ -30,19 +30,19 @@ font-family: sans-serif;
 
 #Sucu:hover{
     background-color: #3c3c3c;
-    border-color: white;
+    border-color: #baff39;
     color: #baff39;
 }
 
 #Productos:hover{
-    background-color: #3c3c3c;
-    border-color: white;
+    background-color: #3c3c3c; 
+    border-color: #baff39;
     color: #baff39;
 }
 
 #InicioSes:hover{
     background-color: #3c3c3c;
-    border-color: white;
+    border-color: #baff39;
     color: #baff39;
 }
 
@@ -185,7 +185,7 @@ body{
 
 #btnProd{
     color: #baff39;
-    border-color: #b2b2b2;
+    border-color: #baff39;
 
 }
 
@@ -260,4 +260,18 @@ body{
 
 body {
     padding-top: 70px; /* Ajusta según la altura de tu navbar */
+}
+
+
+/*Pagina Carrito */
+
+.txtCarrito{
+    font-family: sans-serif;
+    font-weight: bold;
+
+}
+
+#CarrbtnProd{
+    color: rgb(0, 0, 0);
+    background-color: #baff39;
 }
