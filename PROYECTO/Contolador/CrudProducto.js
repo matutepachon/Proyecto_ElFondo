@@ -52,7 +52,7 @@ function cargarProductos() {
 
                 // Botón de modificar
                 const btnModificar = document.createElement('button');
-                btnModificar.className = 'btn btn-warning';
+                btnModificar.className = 'btn btn-warning me-2';
                 btnModificar.textContent = 'Modificar';
                 let editando = false;
 
@@ -130,7 +130,15 @@ function agregarProducto() {
     })
     .then(response => response.json())
     .then(data => {
-        alert(data.message);
+        Swal.fire({
+            width: 250,
+            toast: true,
+            background: "#baff39",
+            position: "top",
+            title: "Producto Agregado",
+            showConfirmButton: false,
+            timer: 1500
+        });
         cargarProductos(); // Recargar los productos después de agregar
         $('#modalAgregarProducto').modal('hide'); // Cerrar el modal
         document.getElementById('formAgregarProducto').reset(); // Reiniciar el formulario
@@ -141,27 +149,52 @@ function agregarProducto() {
 
 
 
-
-
-
 // Función para eliminar un producto
 function eliminarProducto(id) {
-    if (confirm("¿Estás seguro de que quieres eliminar este producto?")) {
-        fetch('../Modulos/productos.php', {
+
+    Swal.fire({
+        title: "¿Estas seguro?",
+        text: "El producto se eliminara permanentemente",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#baff39",
+        cancelButtonText:"Cancelar",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Si"     
+      }).then((result) => {
+        if (result.isConfirmed) {
+
+            Swal.fire({
+                width: 250,
+                toast: true,
+                background: "#baff39",
+                position: "top",
+                title: "Producto Eleminado",
+                showConfirmButton: false,
+                timer: 1500
+            });
+
+            fetch('../Modulos/productos.php', {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({ id: id })
-        })
+            
+            })
+            
             .then(response => response.json())
             .then(data => {
                 console.log(data.message);
                 cargarProductos(); // Recargar los productos después de eliminar
             })
             .catch(error => console.error('Error al eliminar producto:', error));
+    
+        }
+      });
+
 }
-}
+
 // Al cargar la página
 window.onload = () => {
     cargarProductos();
@@ -186,6 +219,15 @@ function modificarProducto(producto) {
     })
     .then(data => {
         // Manejar la respuesta si es necesario (p. ej., mostrar un mensaje de éxito)
+        Swal.fire({
+            width: 250,
+            toast: true,
+            background: "#baff39",
+            position: "top",
+            title: "Producto Modificado",
+            showConfirmButton: false,
+            timer: 1500
+        });
         console.log('Producto modificado:', data);
         cargarProductos(); // Volver a cargar los productos para reflejar los cambios
     })
