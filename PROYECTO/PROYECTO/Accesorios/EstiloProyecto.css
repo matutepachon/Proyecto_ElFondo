@@ -1,0 +1,272 @@
+/* Pagina central */
+
+#index{
+background-color: #b2b2b2 ;
+font-family: sans-serif;
+}
+
+#Arriba{
+    background-color:rgb(73, 73, 73) ;
+    color:black;
+    font-size: 50px;
+    
+}
+
+#Sucu{
+    color: rgb(0, 0, 0);
+    background-color: #baff39;
+}
+
+#Productos{
+    color: rgb(0, 0, 0);
+    background-color: #baff39;
+}
+
+#InicioSes{
+    border-color:rgb(73, 73, 73) ;
+    color: rgb(0, 0, 0);
+    background-color: #baff39;
+}   
+
+#Sucu:hover{
+    background-color: #3c3c3c;
+    border-color: white;
+    color: #baff39;
+}
+
+#Productos:hover{
+    background-color: #3c3c3c;
+    border-color: white;
+    color: #baff39;
+}
+
+#InicioSes:hover{
+    background-color: #3c3c3c;
+    border-color: white;
+    color: #baff39;
+}
+
+#rootmenu{
+    color: red;
+    background-color: #3c3c3c;
+}
+
+#btnCerrSes{
+    background-color: #3c3c3c ;
+    color: #baff39;
+}
+
+.menuDsp{
+    background-color: #3c3c3c;
+    border-color: #baff39;
+}
+
+#nomUsu{
+    font-weight: bold;
+    color: white;
+    font-size: 25px;
+}
+
+.contenido{
+    background-color:#b2b2b2;
+    position: absolute;
+    top: 100px;
+    bottom: 70px;
+    font-size: 20px;
+}
+
+#contactos{
+    background-color:#3c3c3c;
+    position: absolute;
+    top: 900px;
+    bottom: 700px;
+    left: 0px;
+    right: 0px;
+    font-size: 20px;
+
+}
+
+#PieDePag{
+    position: absolute;
+    top:1000px;
+    color: #baff39;
+    left: 0px;
+    right: 0px;
+    background-color: black;
+}
+
+body{
+    background-color: #b2b2b2 ;
+}
+
+/* Pagina Login */
+
+#Login{
+    background-image: url(Fondo.jpg);
+    background-size:1500px;
+    font-family: sans-serif;
+    
+}
+
+#bitnessgym{
+    color:white;
+    text-decoration: none;
+}
+
+
+.input-grande{
+    width: 600px;
+}
+
+#btnInicioSes{
+    background-color: #baff39;
+}
+
+#btnInicioSes:hover{
+    background-color:white;
+    color: #baff39;
+}
+
+.ini{
+    opacity:80% ;
+    position: absolute;
+    top: 18%;
+    left: 30%;
+    right: 30%;
+    height: 450px;
+    border-radius: 10%;
+    background-color: #b2b2b2;
+    
+}
+
+.logregis{
+    position: absolute;
+    top: 72%;
+    left: 25%;
+    right: 25%;
+    color: #baff39;
+
+}
+
+.txIni{
+    color: black;
+    font-family: sans-serif;
+    font-weight:bold    ;
+}
+
+.input1{
+    width: 500px;
+
+}
+
+.input2{
+    width: 500px;
+
+}
+
+#message{
+    color: red;
+}
+
+#user-name{
+    color: white;
+    font-size: 20px;
+}
+
+/* Pagina Sucursales */
+
+#btnSucu{
+    border: 0px;
+    color: rgb(0, 0, 0);
+    background-color: #b2b2b2;
+}
+
+/* Pagina Productos */
+
+#btnProd{
+    color: #baff39;
+    border-color: #b2b2b2;
+
+}
+
+
+/* Pagina Registro */
+
+
+#Registro{ background-image: url(Fondo.jpg);
+    background-size:1500px;
+    font-family: sans-serif;
+}
+
+.reg{
+    position: absolute;
+    left: 30%;
+    right: 30%;
+    height: 460px;
+    background-color: #b2b2b2;
+    
+}
+
+#btnRegi{
+    background-color: #baff39;
+
+}
+#btnRegi:hover{
+    background-color:white;
+    color: #baff39;
+}
+
+.regLogin{
+    position: absolute;
+    top: 85%;
+    left: 25%;
+    right: 25%;
+    color: #baff39;
+
+}
+
+.errorReg{color: red;
+
+}
+
+/* Pagina Root */
+
+#pagRoot{
+    background-color: #b2b2b2;
+    font-family: sans-serif;
+}
+
+.txtroot{
+    font-weight:bolder;
+}
+
+.atras{
+    position: absolute;
+    top: 5%;
+}
+
+.btnAtras, .btnAtras:hover{
+    background-color: #3c3c3c;
+    border-color: #baff39;
+    color: #baff39;
+}
+
+.BorraUsu{
+    background-color: #3c3c3c;
+    border-color: white;
+    color: white;
+
+}
+
+body {
+    padding-top: 70px; /* Ajusta según la altura de tu navbar */
+}
+
+
+/*Pagina Carrito */
+
+.txtCarrito{
+    font-family: sans-serif;
+    font-weight: bold;
+
+}
