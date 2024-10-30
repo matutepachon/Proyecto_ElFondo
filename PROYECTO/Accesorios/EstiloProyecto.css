@@ -1,7 +1,6 @@
 /* Pagina central */
 
 #index{
-background-color: #b2b2b2 ;
 font-family: sans-serif;
 }
 
@@ -18,6 +17,7 @@ font-family: sans-serif;
 }
 
 #Productos{
+    
     color: rgb(0, 0, 0);
     background-color: #baff39;
 }
@@ -70,35 +70,32 @@ font-family: sans-serif;
 .contenido{
     background-color:#b2b2b2;
     position: absolute;
-    top: 100px;
+    top: 200px;
+    font-size: 20px;
+}
+
+.contenido1{
+    background-color: #b2b2b2 ;
+    position: absolute;
+    top: 1000px;
     bottom: 70px;
     font-size: 20px;
 }
 
-#contactos{
-    background-color:#3c3c3c;
-    position: absolute;
-    top: 900px;
-    bottom: 700px;
-    left: 0px;
-    right: 0px;
-    font-size: 20px;
-
+#map { 
+    height: 300px; width: 450px; 
 }
 
 #PieDePag{
     position: absolute;
-    top:1000px;
+    top:1450px;
     color: #baff39;
     left: 0px;
     right: 0px;
     background-color: black;
 }
 
-body{
-    background-color: #b2b2b2 ;
-}
-
+body{background-color:#b2b2b2;}
 /* Pagina Login */
 
 #Login{
