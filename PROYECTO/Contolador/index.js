@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 btnCerrSes.style.display = 'inline';
                 dropdown.style.display = 'inline';
 
-                if (data.correo === 'root@gmail.com') {
+                if (data.role === 'admin') {
                     if (rootMenuButton) {
                         rootMenuButton.style.display = 'inline';
                     }
