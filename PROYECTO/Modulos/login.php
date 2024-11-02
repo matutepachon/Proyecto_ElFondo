@@ -8,6 +8,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $input_correo = $_POST['correo'] ?? '';
     $input_contrasena = $_POST['contrasena'] ?? '';
 
+    // Asegúrate de que los campos no estén vacíos
+    if (empty($input_correo) || empty($input_contrasena)) {
+        echo json_encode(['success' => false, 'message' => 'Correo y contraseña son obligatorios.']);
+        exit();
+    }
+
     // Buscar el usuario en la tabla Usuario y verificar si es Admin, Cliente o Entrenador
     $stmt = $conn->prepare("
         SELECT U.ID_Usuario, 
@@ -25,14 +31,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         WHERE U.Correo_Usu = ?
     ");
     
-    $stmt->bind_param("s", $input_correo);
-    $stmt->execute();
-    $stmt->bind_result($id, $nombre, $password_hash, $tipo_usuario);
-    $stmt->fetch();
-    $stmt->close();
+    if ($stmt) {
+        $stmt->bind_param("s", $input_correo);
+        $stmt->execute();
+        $stmt->bind_result($id, $nombre, $password_hash, $tipo_usuario);
+        $stmt->fetch();
+        $stmt->close();
+    } else {
+        echo json_encode(['success' => false, 'message' => 'Error en la consulta a la base de datos.']);
+        exit();
+    }
 
     // Verificar la contraseña
-    if ($password_hash && password_verify($input_contrasena, $password_hash)) {
+    if (isset($password_hash) && password_verify($input_contrasena, $password_hash)) {
+        // Establecer variables de sesión
         $_SESSION['correo'] = $input_correo;
         $_SESSION['nombre'] = $nombre;
         $_SESSION['id'] = $id;

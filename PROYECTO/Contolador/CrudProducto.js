@@ -235,3 +235,35 @@ function modificarProducto(producto) {
 }
 
 
+document.addEventListener('DOMContentLoaded', function() {
+    // Verificar el acceso del usuario al cargar la página
+    fetch('/PROYECTO/Modulos/accesos.php')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.success) {
+                // Usuario autenticado
+                const tipoUsuario = data.tipo_usuario;
+
+                // Comprobar el acceso a productosAdmin.html
+                if (window.location.pathname.includes('productosAdmin.html') && tipoUsuario !== 'admin') {
+                    alert('No tienes permiso para acceder a esta página.');
+                    window.location.href = 'index.html'; // Redirigir a la página principal
+                }
+            } else {
+                // Usuario no autenticado
+                alert('Debes iniciar sesión para acceder a esta página.');
+                window.location.href = 'Login.html'; // Redirigir a la página de inicio de sesión
+            }
+        })
+        .catch(error => {
+            console.error('Error al verificar el acceso:', error);
+            alert('Ocurrió un error al verificar el acceso.');
+        });
+});
+
+
