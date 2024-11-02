@@ -1,4 +1,8 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 session_start();
 
 
@@ -15,6 +19,7 @@ function getBodyData() {
     }
     return $data;
 }
+
 
 
 // Obtener el método HTTP (GET, POST, PUT, DELETE)
@@ -36,10 +41,17 @@ switch ($method) {
         $data = getBodyData();
         modificarProducto($conn, $data);
         break;
-    case 'DELETE':
-        $data = getBodyData();
-        eliminarProducto($conn, $data['id']);
-        break;
+        case 'DELETE':
+            // Si estás esperando que el ID se pase a través del cuerpo de la solicitud
+            $data = getBodyData();
+            // Asegúrate de que estás pasando el ID correcto
+            if (isset($data['id'])) {
+                eliminarProducto($conn, $data['id']);
+            } else {
+                http_response_code(400); // Bad Request
+                echo json_encode(["message" => "ID no proporcionado"]);
+            }
+            break;
     default:
         http_response_code(405);
         echo json_encode(["message" => "Método no permitido"]);
@@ -84,17 +96,19 @@ function obtenerProducto($conn, $id) {
 
 // Agregar Producto (POST)
 function agregarProducto($conn) {
-    // Acceder a los datos enviados por FormData
-    $id_pro = $_POST['ID_Pro'];
-    $precio = $_POST['Precio'];
-    $nombre = $_POST['Nom_Pro'];
-    $descripcion = $_POST['Desc_Pro'];
-    $imagen = $_POST['Imagen'];
+    $data = getBodyData(); // Obtener los datos
+    $id_pro = $data['ID_Pro'];
+    $precio = $data['Precio'];
+    $cat_pro = $data['Cat_Pro'];
+    $nombre = $data['Nom_Pro'];
+    $descuento = $data['Desc_Pro'];
+    $rut_img = $data['Rut_Img'];
+    $descripcion = $data['Descripcion']; // Mantener como descripción adicional
 
     // Preparar la consulta SQL para insertar los datos
-    $sql = "INSERT INTO Producto (ID_Pro, Precio, Nom_Pro, Desc_Pro, Imagen) VALUES (?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO Producto (ID_Pro, Precio, Cat_Pro, Nom_Pro, Desc_Pro, Rut_Img, Descripcion) VALUES (?, ?, ?, ?, ?, ?, ?)";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("sssss", $id_pro, $precio, $nombre, $descripcion, $imagen);
+    $stmt->bind_param("sssssss", $id_pro, $precio, $cat_pro, $nombre, $descuento, $rut_img, $descripcion);
 
     if ($stmt->execute()) {
         echo json_encode(["message" => "Producto agregado correctamente"]);
@@ -107,23 +121,24 @@ function agregarProducto($conn) {
 
 
 
-// Modificar Producto (PUT)
 function modificarProducto($conn, $data) {
     // Acceder a los datos enviados por JSON
     $id_pro = $data['ID_Pro']; // Se utiliza para buscar el producto
     $precio = $data['Precio'];
+    $cat_pro = $data['Cat_Pro']; // Nueva categoría de producto
     $nombre = $data['Nom_Pro'];
-    $descripcion = $data['Desc_Pro'];
-    $imagen = $data['Imagen'];
+    $descuento = $data['Desc_Pro'];
+    $rut_img = $data['Rut_Img']; // Nueva ruta de la imagen
+    $descripcion= $data['Descripcion']; // Nueva descripción adicional
 
     // Verificar que se reciban todos los datos
-    if (empty($id_pro) || empty($precio) || empty($nombre) || empty($descripcion) || empty($imagen)) {
+    if (empty($id_pro) || empty($precio) || empty($cat_pro) || empty($nombre) || empty($descuento) || empty($rut_img) || empty($descripcion)) {
         echo json_encode(["message" => "Faltan datos, todos los campos son requeridos"]);
         return;
     }
 
     // Preparar la consulta SQL para actualizar los datos
-    $sql = "UPDATE Producto SET Precio = ?, Nom_Pro = ?, Desc_Pro = ?, Imagen = ? WHERE ID_Pro = ?";
+    $sql = "UPDATE Producto SET Precio = ?, Cat_Pro = ?, Nom_Pro = ?, Desc_Pro = ?, Rut_Img = ?, Descripcion = ? WHERE ID_Pro = ?";
     $stmt = $conn->prepare($sql);
 
     if ($stmt === false) {
@@ -132,7 +147,7 @@ function modificarProducto($conn, $data) {
     }
 
     // Enlazar parámetros
-    $stmt->bind_param("sssss", $precio, $nombre, $descripcion, $imagen, $id_pro);
+    $stmt->bind_param("sssssss", $precio, $cat_pro, $nombre, $descuento, $rut_img, $descripcion, $id_pro);
 
     // Ejecutar la consulta y verificar el resultado
     if ($stmt->execute()) {
@@ -146,20 +161,22 @@ function modificarProducto($conn, $data) {
     }
     
     // Cerrar el statement
-    $stmt->close(); // Asegúrate de cerrar el statement después de ejecutarlo
+    $stmt->close();
 }
 
 
 // Eliminar Producto (DELETE)
-function eliminarProducto($conn, $id) {
-    $sql = "DELETE FROM Producto WHERE ID_Pro = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("s", $id);
+    function eliminarProducto($conn, $id) {
+        // Eliminar la referencia a "*" en DELETE
+        $sql = "DELETE FROM Producto WHERE ID_Pro = ?"; 
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("s", $id);
 
-    if ($stmt->execute()) {
-        echo json_encode(["message" => "Producto eliminado correctamente"]);
-    } else {
-        echo json_encode(["message" => "Error al eliminar producto", "error" => $conn->error]);
+        header('Content-Type: application/json'); // Asegurarse de que la respuesta sea JSON
+
+        if ($stmt->execute()) {
+            echo json_encode(["message" => "Producto eliminado correctamente"]);
+        } else {
+            echo json_encode(["message" => "Error al eliminar producto", "error" => $conn->error]);
+        }
     }
-}
-

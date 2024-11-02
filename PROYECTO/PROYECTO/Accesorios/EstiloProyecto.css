@@ -193,7 +193,7 @@ body{
 /* Pagina Registro */
 
 
-#Registro{ background-image: url(Fondo.jpg);
+/*#Registro{ background-image: url(Fondo.jpg);
     background-size:1500px;
     font-family: sans-serif;
 }
@@ -227,7 +227,7 @@ body{
 
 .errorReg{color: red;
 
-}
+} */
 
 /* Pagina Root */
 
@@ -262,11 +262,9 @@ body {
     padding-top: 70px; /* Ajusta según la altura de tu navbar */
 }
 
+.list-group {
+    max-width: 300px; /* Ajustar el ancho máximo de la lista */
+    margin-left: 0; /* Alinear a la izquierda */
+}   
 
-/*Pagina Carrito */
 
-.txtCarrito{
-    font-family: sans-serif;
-    font-weight: bold;
-
-}
