@@ -47,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Establecer variables de sesión
         $_SESSION['correo'] = $input_correo;
         $_SESSION['nombre'] = $nombre;
-        $_SESSION['id'] = $id;
+        $_SESSION['ID_Usuario'] = $id; // Cambiado a 'ID_Usuario' para ser consistente
         $_SESSION['tipo_usuario'] = $tipo_usuario; // 'admin', 'cliente' o 'entrenador'
 
         echo json_encode(['success' => true, 'tipo_usuario' => $tipo_usuario]);
