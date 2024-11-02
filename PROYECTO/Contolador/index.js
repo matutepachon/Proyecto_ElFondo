@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    fetch('http://localhost/PROYECTO/Modulos/session_check.php')
+    fetch('/PROYECTO/Modulos/session_check.php')
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 btnCerrSes.style.display = 'inline';
                 dropdown.style.display = 'inline';
 
-                if (data.role === 'admin') {
+                if (data.correo === 'root@gmail.com') {
                     if (rootMenuButton) {
                         rootMenuButton.style.display = 'inline';
                     }

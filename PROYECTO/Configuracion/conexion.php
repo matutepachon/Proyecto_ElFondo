@@ -2,7 +2,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "root";
-$dbname = "Bitnessgim";
+$dbname = "my_database";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
