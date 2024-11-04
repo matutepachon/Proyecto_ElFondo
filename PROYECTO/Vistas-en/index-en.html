@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="../Accesorios/EstiloProyecto.css">
+    <title>BitnessGym</title>
+</head>
+<body id="index">
+
+<main>
+    <nav class="navbar navbar-expand-lg fixed-top container-fluid Arriba">
+        <a class="navbar-brand d-flex align-items-center" href="../Vistas-en/index-en.html" data-aos="fade-right" data-aos-duration="2000">
+            <img src="../Accesorios/LogoBitnessGym.png" alt="BitnessGym Logo" width="80px" class="ms-2">
+            <span class="d-sm-inline d-none txtbitnessgym mt-2">BitnessGym</span>
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+
+                <a class="nav-link" href="../Vistas-en/Sucursales-en.html" data-aos="fade-down" data-aos-duration="1000">
+                    <button class="button type1"><span class="btn-txt">Branch</span></button>
+                </a>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../Vistas-en/Productos-en.html" data-aos="fade-down" data-aos-duration="1500">
+                        <button class="button type1"><span class="btn-txt">Products</span></button>
+                    </a>
+                </li>
+
+                <a href="carrito-en.html" class="me-2 mt-2 ms-3" data-aos="fade-down" data-aos-duration="1500"><img src="../Accesorios/carrito.svg" alt="Carrito"></a>
+
+                <li class="nav-item" id="inicioSes">
+                    <a class="nav-link btn text-white" href="../Vistas-en/Login-en.html" data-aos="fade-down" data-aos-duration="2000">
+                        <button class="button type1"><span class="btn-txt">Log In</span></button>
+                    </a>
+                </li>
+
+                <li class="nav-item dropdown mt-3">
+                    <a class="nav-link dropdown-toggle" href="#" id="nomUsu" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-aos="fade-left" data-aos-duration="2000">User</a>
+                    <ul class="dropdown-menu DropdownEst" aria-labelledby="nomUsu">
+                        <li><a class="dropdown-item" href="../Vistas-en/admin-en.html" id="rootmenu">Root Menu</a></li>
+                        <li><a class="dropdown-item" href="#" id="btnCerrSes">Log Out</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <footer id="PieDePag" class="text-center">
+        <p class="text-center overflow-auto">You can contact the developers at elfondo2024@gmail.com</p>
+        <p>Copyright©BitnessGym. All rights reserved.</p>
+    </footer>
+</main>
+
+<script src="../jquery-3.7.1.min.js"></script>
+<script src="../Contolador/index.js"></script>
+<script src="../Contolador/logout.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>AOS.init();</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>

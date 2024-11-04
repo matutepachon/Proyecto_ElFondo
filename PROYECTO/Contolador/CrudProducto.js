@@ -104,7 +104,7 @@ function cargarProductos() {
 
                 // Botón de eliminar
                 const btnEliminar = document.createElement('button');
-                btnEliminar.className = 'btn btn-danger';
+                btnEliminar.className = 'btn btn-danger ms-2';
                 btnEliminar.textContent = 'Eliminar';
                 btnEliminar.onclick = () => eliminarProducto(producto.ID_Pro);
 
@@ -256,7 +256,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             } else {
                 // Usuario no autenticado
-                alert('Debes iniciar sesión para acceder a esta página.');
+                alert('No tienes permiso para acceder a esta página.');
                 window.location.href = 'Login.html'; // Redirigir a la página de inicio de sesión
             }
         })

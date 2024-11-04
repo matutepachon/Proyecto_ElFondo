@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="../Accesorios/EstiloProyecto.css">
+    <title>BitnessGym | Admin Products</title>
+</head>
+<body id="index">
+    
+  <nav class="navbar navbar-expand-lg fixed-top container-fluid Arriba">
+    <!-- Logo and name -->
+    <a class="navbar-brand d-flex align-items-center" href="#" data-aos="fade-right" data-aos-duration="2000">
+    <img src="../Accesorios/LogoBitnessGym.png" alt="BitnessGym Logo" width="80px" class="ms-2">
+    <span class="d-sm-inline d-none txtbitnessgym mt-2">BitnessGym</span>
+    </a>
+          
+    <!-- Collapsible button for mobile devices -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+          
+      <!-- Navigation links -->
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+
+          <!-- Branch -->
+          <a class="nav-link" href="../Vistas-en/Branches-en.html" data-aos="fade-down" data-aos-duration="1000"><button class="button type1"><span class="btn-txt">Branch</span></button></a>
+                
+          <!-- Products -->
+          <li class="nav-item">
+            <a class="nav-link" href="../Vistas-en/Products-en.html" data-aos="fade-down" data-aos-duration="1500"><button class="button type1"><span class="btn-txt">Products</span></button></a>
+          </li>
+                
+            <!-- Login -->
+          <li class="nav-item" id="login">
+              <a class="nav-link btn text-white" href="../Vistas-en/Login-en.html" data-aos="fade-down" data-aos-duration="2000"><button class="button type1"><span class="btn-txt">Login</span></button></a>
+          </li>
+                
+          <!-- User Dropdown -->
+          <li class="nav-item dropdown mt-3">
+            <a class="nav-link dropdown-toggle" id="userName" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-aos="fade-left" data-aos-duration="2000">User</a>
+              <ul class="dropdown-menu DropdownEst" aria-labelledby="userName">
+                <li><a class="dropdown-item" href="../Vistas-en/admin-en.html" id="rootMenu">Root Menu</a></li>
+                <li><a class="dropdown-item" id="btnLogout">Logout</a></li>
+            </ul>
+        </li>
+        </ul>
+      </div>
+</nav>
+
+        <!-- Adjust top margin here -->
+        <div class="container mt-4">
+            <article class="row justify-content-center" data-aos="fade-down" data-aos-duration="1000">
+                <h1 class="col-4 text-center mt-5">Product List</h1>
+                
+            </article>
+            <!-- Button to open modal -->
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalAddProduct" data-aos="fade-right" data-aos-duration="1000">
+                Add Product
+            </button>
+            <div id="container" class="row mt-4" data-aos="fade-up" data-aos-duration="1000"></div>
+        </div>
+    
+       <!-- Modal to add product -->
+<div class="modal fade" id="modalAddProduct" tabindex="-1" role="dialog" aria-labelledby="modalAddProductLabel" aria-hidden="true" data-aos="fade-down" data-aos-duration="1000">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalAddProductLabel">Add Product</h5>
+            </div>
+            <div class="modal-body">
+                <form id="formAddProduct">
+                    <div class="form-group">
+                        <label for="productID">Product ID</label>
+                        <input type="text" class="form-control" id="productID" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="productName">Product Name</label>
+                        <input type="text" class="form-control" id="productName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="productDescription">Product Description</label>
+                        <textarea class="form-control" id="productDescription" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="productPrice">Price</label>
+                        <input type="text" class="form-control" id="productPrice" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="productCategory">Category</label>
+                        <input type="text" class="form-control" id="productCategory" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="productDiscount">Discount</label>
+                        <input type="text" class="form-control" id="productDiscount" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="productImageURL">Image URL</label>
+                        <input type="text" class="form-control" id="productImageURL" required> <!-- Input for image URL -->
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="btnSaveProduct">Save Product</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+ 
+    </main>
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="../Contolador/CrudProduct.js"></script>
+    <script src="../Contolador/index.js"></script>
+    
+    <script src="../jquery-3.7.1.min.js"></script>
+    <script src="../Contolador/index.js"></script>
+    <script src="../Contolador/logout.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>AOS.init();</script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+
+</html>
