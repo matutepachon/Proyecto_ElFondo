@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
-    fetch('/PROYECTO/Modulos/session_check.php')
+    // Verificar la sesión del usuario al cargar la página
+    fetch('/PROYECTO/Modulos/accesos.php')
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
@@ -8,33 +9,39 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .then(data => {
             const nomUsu = document.getElementById('nomUsu');
-            const InicioSes = document.getElementById('InicioSes');
+            const inicioSes = document.getElementById('inicioSes');
             const btnCerrSes = document.getElementById('btnCerrSes');
-            const dropdown = document.getElementById('dropdown');
             const rootMenuButton = document.getElementById('rootmenu');
 
             if (data.success) {
-                nomUsu.textContent = ` ${data.nombre}`;
-                InicioSes.style.display = 'none'; 
-                btnCerrSes.style.display = 'inline';
-                dropdown.style.display = 'inline';
-
-                if (data.correo === 'root@gmail.com') {
-                    if (rootMenuButton) {
-                        rootMenuButton.style.display = 'inline';
-                    }
-                } else {
-                    if (rootMenuButton) {
-                        rootMenuButton.style.display = 'none';
-                    }
+                // Usuario ha iniciado sesión
+                if (nomUsu) {
+                    nomUsu.textContent = ` ${data.nombre}`; // Muestra el nombre del usuario en el menú
+                    nomUsu.style.display = 'inline'; // Asegúrate de que el enlace del usuario esté visible
+                }
+                if (inicioSes) {
+                    inicioSes.style.display = 'none'; // Oculta el botón de Iniciar Sesión
+                }
+                if (btnCerrSes) {
+                    btnCerrSes.style.display = 'inline'; // Muestra el botón de Cerrar Sesión
+                }
+                if (rootMenuButton) {
+                    rootMenuButton.style.display = (data.tipo_usuario === 'admin') ? 'inline' : 'none'; // Muestra u oculta el menú root
                 }
             } else {
-                nomUsu.textContent = '';
-                InicioSes.style.display = 'inline';
-                btnCerrSes.style.display = 'none'; 
-                dropdown.style.display = 'none';
+                // Usuario no ha iniciado sesión
+                if (nomUsu) {
+                    nomUsu.textContent = ''; // Limpia el nombre del usuario
+                    nomUsu.style.display = 'none'; // Oculta el enlace del usuario
+                }
+                if (inicioSes) {
+                    inicioSes.style.display = 'inline'; // Muestra el botón de Iniciar Sesión
+                }
+                if (btnCerrSes) {
+                    btnCerrSes.style.display = 'none'; // Oculta el botón de Cerrar Sesión
+                }
                 if (rootMenuButton) {
-                    rootMenuButton.style.display = 'none'; 
+                    rootMenuButton.style.display = 'none'; // Oculta el menú root
                 }
             }
         })
@@ -43,6 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
             alert('Ocurrió un error al verificar la sesión.');
         });
 
+    // Evento para el botón de cerrar sesión
     document.getElementById('btnCerrSes').addEventListener('click', function() {
         fetch('http://localhost/PROYECTO/Modulos/logout.php', {
             method: 'GET'
@@ -67,4 +75,5 @@ document.addEventListener('DOMContentLoaded', function() {
             alert('Ocurrió un error al enviar la solicitud.');
         });
     });
+    
 });
