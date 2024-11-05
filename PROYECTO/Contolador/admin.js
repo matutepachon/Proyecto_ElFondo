@@ -26,28 +26,47 @@ document.addEventListener('DOMContentLoaded', function() {
                         button.addEventListener('click', function() {
                             const usuarioId = this.getAttribute('data-id');
                             // Confirmar antes de eliminar
-                            if (confirm('¿Estás seguro de que deseas eliminar este usuario?')) {
-                                fetch('../Modulos/eliminar_usuario.php', {
-                                    method: 'POST',
-                                    headers: {
-                                        'Content-Type': 'application/x-www-form-urlencoded'
-                                    },
-                                    body: new URLSearchParams({ usuario_id: usuarioId })
-                                })
-                                .then(response => response.json())
-                                .then(data => {
-                                    if (data.success) {
-                                        alert(data.mensaje);
-                                        loadUsers(); // Recargar usuarios
-                                    } else {
-                                        alert(data.mensaje);
-                                    }
-                                })
-                                .catch(error => {
-                                    console.error(error);
-                                    alert('Ocurrió un error al eliminar el usuario.');
-                                });
-                            }
+                            Swal.fire({
+                                title: "¿Estás seguro?",
+                                text: "El usuario " + usuarioId + " se eliminará permanentemente.",
+                                icon: "warning",
+                                showCancelButton: true,
+                                confirmButtonColor: "#baff39",
+                                cancelButtonText: "Cancelar",
+                                cancelButtonColor: "#d33",
+                                confirmButtonText: "Sí"
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    fetch('../Modulos/eliminar_usuario.php', {
+                                        method: 'POST',
+                                        headers: {
+                                            'Content-Type': 'application/x-www-form-urlencoded'
+                                        },
+                                        body: new URLSearchParams({ usuario_id: usuarioId })
+                                    })
+                                    .then(response => response.json())
+                                    .then(data => {
+                                        if (data.success) {
+                                            Swal.fire({
+                                            width: 250,
+                                            toast: true,
+                                            background: "#baff39",
+                                            position: "top",
+                                            title: "Usuario Eliminado",
+                                            showConfirmButton: false,
+                                            timer: 1500
+                                        });
+                                            loadUsers(); // Recargar usuarios
+                                        } else {
+                                            alert(data.mensaje);
+                                        }
+                                    })
+                                    .catch(error => {
+                                        console.error(error);
+                                        alert('Ocurrió un error al eliminar el usuario.');
+                                    });
+                                }
+                            });
                         });
                     });
                 } else {

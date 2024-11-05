@@ -169,34 +169,51 @@ function agregarProducto() {
 }
 
 
-
-
-
-// Función para eliminar un producto
-// Función para eliminar un producto
 // Función para eliminar un producto
 function eliminarProducto(id) {
     console.log("ID del producto a eliminar:", id);
-    if (confirm('¿Estás seguro de que quieres eliminar este producto?')) {
-        fetch(`/PROYECTO/Modulos/productos.php`, {
+    
+    Swal.fire({
+        title: "¿Estas seguro?",
+        text: "El producto "+ id + " se eliminara permanentemente",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#baff39",
+        cancelButtonText:"Cancelar",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Si"     
+      }).then((result) => {
+        if (result.isConfirmed) {
+
+            fetch('../Modulos/productos.php', {
             method: 'DELETE',
             headers: {
-                'Content-Type': 'application/json' // Indica que el cuerpo de la solicitud está en JSON
+                'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ id }) // Envía el ID en el cuerpo de la solicitud
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Error en la respuesta del servidor: ' + response.status);
-            }
-            return response.json();
-        })
-        .then(data => {
-            alert(data.message); // Muestra el mensaje de éxito o error
-            cargarProductos(); // Llama a la función para recargar los productos
-        })
-        .catch(error => console.error('Error al eliminar producto:', error)); // Maneja errores
-    }
+            body: JSON.stringify({ id: id })
+            
+            })
+
+
+            .then(response => response.json())
+            .then(data => {
+                console.log(data.message);
+                cargarProductos(); // Recargar los productos después de eliminar
+                Swal.fire({
+                    width: 250,
+                    toast: true,
+                    background: "#baff39",
+                    position: "top",
+                    title: "Producto Eleminado",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            })
+            .catch(error => console.error('Error al eliminar producto:', error));
+    
+        }
+      });
+    
 }
 
 

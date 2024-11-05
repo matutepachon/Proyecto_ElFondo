@@ -14,11 +14,11 @@ document.getElementById('login').addEventListener('submit', function(event) {
             console.log("Logeado correctamente");
             window.location.href = 'index.html';
         } else {
-            messageElement.textContent = `Error: ${data.message}`;
+            messageElement.textContent = `${data.message}`;
         }
     })
     .catch(error => {
-        console.error('Error:', error);
+        console.error(error);
         console.error('Ocurrió un error al enviar la solicitud.');
     });
 });

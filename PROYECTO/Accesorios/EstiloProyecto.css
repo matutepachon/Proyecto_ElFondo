@@ -280,6 +280,23 @@
         background-color: #baff39;
     }
 
+    /* Pagina agregar ADM y Entrenador */
+
+    .agrAdmin{
+        max-width: 600px;
+        max-height: 500px;
+        background-color: rgba(178, 178, 178, 0.8); 
+        opacity: 1;
+        min-height: 450PX;
+    }
+
+    .agrEntrenador{
+        max-width: 600px;
+        max-height: 500px;
+        background-color: rgba(178, 178, 178, 0.8); 
+        opacity: 1;
+
+    }
 
 
 
