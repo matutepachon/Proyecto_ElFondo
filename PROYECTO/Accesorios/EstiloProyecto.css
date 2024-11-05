@@ -94,11 +94,12 @@
     
     #PieDePag{
         position: absolute;
-        top:1000px;
+        margin-top: auto;
         color: #baff39;
+        background-color: black;
+        
         left: 0px;
         right: 0px;
-        background-color: black;
     }
     
     
@@ -115,7 +116,7 @@
     
     #Login{
         background-image: url(Fondo.jpg);
-        background-size:1500px;
+        background-size:1600px;
         font-family: sans-serif;
         
     }
@@ -125,13 +126,18 @@
         text-decoration: none;
     }
     
-    
-    .input-grande{
-        width: 600px;
+    .ini {
+        max-width: 600px;
+        max-height: 500px;
+        background-color: rgba(178, 178, 178, 0.8); 
+        opacity: 1;
     }
+    
+    
     
     #btnInicioSes{
         background-color: #baff39;
+        border-color: #baff39;
     }
     
     #btnInicioSes:hover{
@@ -139,17 +145,6 @@
         color: #baff39;
     }
     
-    .ini{
-        opacity:80% ;
-        position: absolute;
-        top: 18%;
-        left: 30%;
-        right: 30%;
-        height: 450px;
-        border-radius: 10%;
-        background-color: #b2b2b2;
-        
-    }
     
     .logregis{
         position: absolute;
@@ -206,17 +201,14 @@
     
     
     #Registro{ background-image: url(Fondo.jpg);
-        background-size:1500px;
+        background-size:1600px;
         font-family: sans-serif;
     }
     
     .reg{
-        position: absolute;
-        left: 30%;
-        right: 30%;
-        height: 460px;
-        background-color: #b2b2b2;
-        
+        max-width: 600px;
+        background-color:
+        rgba(178, 178, 178, 0.7);
     }
     
     #btnRegi{
