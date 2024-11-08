@@ -5,6 +5,17 @@
     font-family: sans-serif;
 
     }
+    #nomUsu{
+        border: solid;
+        border: 2px;
+        border-color: #baff39;
+        border-radius: 20%;
+
+    }
+
+    #nomUsu:hover{
+        color: #baff39;
+    }
     
     .Arriba{
         background-color:rgb(73, 73, 73) ;
@@ -49,10 +60,10 @@
     }
     
     #rootmenu{
-        color: red;
+        color: #baff39;
         background-color: #3c3c3c;
     }
-    
+
     #btnCerrSes{
         background-color: #3c3c3c ;
         color: #baff39;
@@ -97,7 +108,7 @@
         margin-top: auto;
         color: #baff39;
         background-color: black;
-        
+        top: 100em;
         left: 0px;
         right: 0px;
     }
@@ -108,6 +119,12 @@
         font-size: 40px;
         color: white;
 
+    }
+
+    #txtSucursales{
+        color: #baff39;
+        font-weight: bold;
+        font-size: 40px;
     }
 
 
@@ -213,6 +230,7 @@
     
     #btnRegi{
         background-color: #baff39;
+        border-color: #baff39;
     
     }
     #btnRegi:hover{
@@ -344,3 +362,10 @@
         visibility: visible;
         transform: scale(200) translateX(3px);
       }
+
+      /* PAYPAL*/
+      .paypal {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }

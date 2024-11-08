@@ -1,6 +1,6 @@
-drop database if exists Bitnessgim;
-create database Bitnessgim;
-use Bitnessgim;
+drop database if exists Bitnessgym;
+create database Bitnessgym;
+use Bitnessgym;
 
 -- Entidades
 

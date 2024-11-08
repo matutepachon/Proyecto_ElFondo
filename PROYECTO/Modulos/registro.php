@@ -41,6 +41,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if ($stmt->execute()) {
                 $_SESSION['correo'] = $correo;
                 $_SESSION['nombre'] = $nombre;
+                $_SESSION['tipo_usuario']= "";  
+
                 echo json_encode(['success' => true]);
             } else {
                 echo json_encode(['success' => false, 'mensaje' => 'Error al registrar el usuario en la tabla Cliente: ' . $stmt->error]);

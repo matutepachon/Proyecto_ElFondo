@@ -202,7 +202,19 @@ function mostrarCarrito() {
         }).render('#paypal-button-container'); // Renderiza el botón en el contenedor especificado
     }
 }
+function verificarCarrito() {
+    const carritoProductos = carrito.obtenerProductos();
+    const botonComprar = document.getElementById('btnComprar'); 
+
+    if (carritoProductos.length === 0) {
+        botonComprar.style.display = 'none'; 
+     } else {
+        botonComprar.style.display = 'block'; 
+    }
+}
+
 
 window.onload = function() {
+    verificarCarrito();
     mostrarCarrito();
 };
