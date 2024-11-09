@@ -35,6 +35,7 @@
                 <a class="nav-link dropdown-toggle" href="#" id="nomUsu" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-aos="fade-left" data-aos-duration="2000">Usuario</a>
                   <ul class="dropdown-menu dropdown-menu-end DropdownEst"  data-aos="fade-left" data-aos-duration="2000">
                     <li><a class="dropdown-item" href="admin.html" id="rootmenu">Menu Admin</a></li>
+                    <li><a class="dropdown-item text-white" href="datosUsuarios.html" id="btnCuenta">Ver tu Cuenta</a></li>
                     <li><a class="dropdown-item" href="#" id="btnCerrSes">Cerrar sesión</a></li>
                 </ul>
             </li>
@@ -42,6 +43,7 @@
           </div>
       </nav>
       
+      <section class="mt-5 mb-5 d-none d-md-inline" > <p> <img src="" alt=""></p></section>
       <section class="mt-5 mb-5 d-none d-md-inline" > <p> <img src="" alt=""></p></section>
       <section class="mt-5 mb-5 d-none d-md-inline" > <p> <img src="" alt=""></p></section>
       <section class="mt-5 mb-5 d-none d-md-inline" > <p> <img src="" alt=""></p></section>
@@ -58,15 +60,25 @@
             <p class="txtcontenido">En nuestro gimnasio, más que un lugar para entrenar, te ofrecemos un entorno donde puedes crecer y superarte cada día. Nuestro equipo y comunidad están comprometidos a acompañarte en cada paso hacia un estilo de vida más saludable, apoyándote en los desafíos y celebrando tus logros. Aquí no solo trabajas en tu cuerpo; también fortaleces tu confianza, descubriendo que puedes superar tus límites y alcanzar tus metas. Juntos, creamos un espacio donde cada logro cuenta y cada esfuerzo vale la pena, construyendo una versión más fuerte y segura de ti mismo.</p>
           </div>
         </article>
-
+        
       </section>
 
+      <section class="container contenido text-center justify-content-center align-items-center rounded-4 pb-4 pt-4" data-aos="fade-up" data-aos-duration="2000">
+        <h1 class="my-2 txtxSucursales" id="txtSucursales">Suscripciones</h1>
+        <p class="txtcontenido" >Elige el plan perfecto para alcanzar tus metas</p>
+        <div id="suscripcionesContainer" class="row">
+            <!-- Aquí se cargarán las suscripciones en forma de cards -->
+        </div>
+    </section>
+    
+    
+
       <section class="mt-5 mb-5 d-none d-md-inline" > <p> <img src="" alt=""></p></section>
       <section class="mt-5 mb-5 d-none d-md-inline" > <p> <img src="" alt=""></p></section>
       <section class="mt-5 mb-5 d-none d-md-inline" > <p> <img src="" alt=""></p></section>
       <section class="mt-5 mb-5 d-none d-md-inline" > <p> <img src="" alt=""></p></section>
 
-      <section class="container contenido text-center justify-content-center align-items-center d-flex mt-5 rounded-4 pb-2" data-aos="fade-up" data-aos-duration="2000" >
+      <section class="container contenido text-center justify-content-center align-items-center mt-5 rounded-4 pb-2" data-aos="fade-up" data-aos-duration="2000" >
         <article class="row col-11 m-5">
           <h1 class="my-3" id="txtSucursales">Suscursales</h1>
           <p class="mt-2 txtcontenido"> Ubicados en Pando, te ofrecemos un espacio ideal para entrenar con equipos de calidad y entrenadores expertos. Ven a vivir una experiencia única y alcanza tus objetivos con nosotros. ¡Te esperamos!</p>
@@ -74,8 +86,8 @@
         </article>
       </section>
 
-      <footer id="PieDePag" class="text-center mt-5">
-        <p class="text-center overflow-auto">Puede contactar con los desrolladores en elfondo2024@gmail.com</p>
+      <footer id="PieDePag" class="text-center mt-5 ">
+        <p class="text-center">Puede contactar con los desrolladores en elfondo2024@gmail.com</p>
         <p>Copyright©BitnessGym. Derechos reservados.</p>
     </footer>
   </main>
@@ -94,9 +106,11 @@
           marker.bindPopup("<b>BitnessGym</b><br>Pando, Canelones, Uruguay.").openPopup();
       });
   </script>
+  <script src="../Contolador/suscripciones.js"></script>
   <script src="../jquery-3.7.1.min.js"></script>
   <script src="../Contolador/index.js"></script>
   <script src="../Contolador/logout.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>AOS.init();</script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

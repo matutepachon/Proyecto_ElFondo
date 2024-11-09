@@ -1,3 +1,41 @@
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Verificar el acceso del usuario al cargar la página
+    fetch('../Modulos/accesos.php')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            const tipoUsuario = data.tipo_usuario;
+
+            // Verifica si el usuario no es admin y está en la página de agregarEntrenador.html
+            if (window.location.pathname.includes('admin.html') && tipoUsuario !== 'admin') {
+                Swal.fire({
+                    icon: "error",
+                    title: "No tienes permiso para acceder a esta página.",
+                    footer: '<a href="Login.html">Inicia sesión como admin</a>'
+                }).then(() => {
+                    window.location.href = 'index.html';
+                });
+            }
+        })
+        .catch(error => {
+            
+            console.error('Error al verificar el acceso:', error);
+            Swal.fire({
+                icon: "error",
+                title: "Error al verificar permisos.",
+                text: "Ocurrió un error al verificar el acceso. Redirigiendo...",
+            }).then(() => {
+                window.location.href = 'index.html';
+            });
+        });
+    });
+
+
 document.addEventListener('DOMContentLoaded', function() {
     function loadUsers() {
         fetch('../Modulos/lista_usuarios.php')
@@ -19,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             </td>
                         `;
                         tabladeUsu.appendChild(row);
-                    });
+                    });alert
 
                     // Agregar evento de eliminación a cada botón
                     document.querySelectorAll('.BorraUsu').forEach(button => {
@@ -70,7 +108,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         });
                     });
                 } else {
-                    alert(data.mensaje);
+                    console.error(data.mensaje);
                 }
             })
             .catch(error => {

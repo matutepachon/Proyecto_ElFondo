@@ -12,10 +12,12 @@ document.addEventListener('DOMContentLoaded', function() {
             const inicioSes = document.getElementById('inicioSes');
             const btnCerrSes = document.getElementById('btnCerrSes');
             const rootMenuButton = document.getElementById('rootmenu');
+            const cuenta = document.getElementById('btnCuenta');
             const carrito = document.getElementById('carrito');
 
             if (data.success) {
                 // Usuario ha iniciado sesión
+                
                 if (nomUsu) {
                     nomUsu.textContent = ` ${data.nombre}`; // Muestra el nombre del usuario en el menú
                     nomUsu.style.display = 'inline'; // Asegúrate de que el enlace del usuario esté visible
@@ -24,13 +26,17 @@ document.addEventListener('DOMContentLoaded', function() {
                     inicioSes.style.display = 'none'; // Oculta el botón de Iniciar Sesión
                 }
                 if (btnCerrSes) {
-                    btnCerrSes.style.display = 'inline'; // Muestra el botón de Cerrar Sesión
+                    btnCerrSes.style.display = 'inline'; // Muestra el botón de cuenta
+                }
+                if (cuenta) {
+                    cuenta.style.display = 'inline'; // Muestra el botón de cue
                 }
                 if (rootMenuButton) {
                     rootMenuButton.style.display = (data.tipo_usuario === 'admin') ? 'inline' : 'none'; // Muestra u oculta el menú root
+                    cuenta.style.display = 'none';
                 }
                 if (carrito) {
-                    carrito.style.display = 'inline'; // Muestra u oculta el menú root
+                    carrito.style.display = 'inline';
                 }
             } else {
                 // Usuario no ha iniciado sesión
@@ -40,6 +46,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
                 if (inicioSes) {
                     inicioSes.style.display = 'inline'; // Muestra el botón de Iniciar Sesión
+                }
+                if (cuenta) {
+                    cuenta.style.display = 'none'; // Muestra el botón de cuenta
                 }
                 if (btnCerrSes) {
                     btnCerrSes.style.display = 'none'; // Oculta el botón de Cerrar Sesión
@@ -57,7 +66,6 @@ document.addEventListener('DOMContentLoaded', function() {
             alert('Ocurrió un error al verificar la sesión.');
         });
 
-    // Evento para el botón de cerrar sesión
     document.getElementById('btnCerrSes').addEventListener('click', function() {
         fetch('http://localhost/PROYECTO/Modulos/logout.php', {
             method: 'GET'

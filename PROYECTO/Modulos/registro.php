@@ -39,9 +39,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt->bind_param("ississds", $id_usuario, $nombre, $apellidos, $cedula, $edad, $peso, $altura, $centro_salud);
 
             if ($stmt->execute()) {
+                $_SESSION['ID_Usuario'] = $id_usuario;
                 $_SESSION['correo'] = $correo;
                 $_SESSION['nombre'] = $nombre;
-                $_SESSION['tipo_usuario']= "";  
+                $_SESSION['tipo_usuario']= ""; 
 
                 echo json_encode(['success' => true]);
             } else {

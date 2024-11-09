@@ -12,46 +12,35 @@
 </head>
 <body id="index">
     
-  <nav class="navbar navbar-expand-lg fixed-top container-fluid Arriba">
-    <!-- Logo y nombre -->
-    <a class="navbar-brand d-flex align-items-center" href="#" data-aos="fade-right" data-aos-duration="2000">
-    <img src="../Accesorios/LogoBitnessGym.png" alt="Logo BitnessGym" width="80px" class="ms-2">
-    <span class="d-sm-inline d-none txtbitnessgym mt-2">BitnessGym</span>
-    </a>
-          
-    <!-- Botón de colapsado para dispositivos móviles -->
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-          
-      <!-- Enlaces de navegación -->
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-
-          <!-- Sucursal -->
-          <a class="nav-link" href="Sucursales.html" data-aos="fade-down" data-aos-duration="1000"><button class="button type1" > <span class="btn-txt">Sucursal</span></button></a>
-                
-          <!-- Productos -->
-          <li class="nav-item">
-            <a class="nav-link " href="Productos.html" data-aos="fade-down" data-aos-duration="1500"><button class="button type1"> <span class="btn-txt">Productos</span></button></a>
-          </li>
-                
-            <!-- Iniciar Sesión -->
-          <li class="nav-item" id="inicioSes">
-              <a class="nav-link btn text-white" href="Login.html" data-aos="fade-down" data-aos-duration="2000"><button class="button type1"> <span class="btn-txt">Iniciar Sesión</span></button></a>
-          </li>
-                
-          <!-- Dropdown Usuario -->
-          <li class="nav-item dropdown mt-3 " >
-            <a class="nav-link dropdown-toggle" href="#" id="nomUsu" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-aos="fade-left" data-aos-duration="2000">Usuario</a>
-              <ul class="dropdown-menu DropdownEst" aria-labelledby="nomUsu">
-                <li><a class="dropdown-item" href="admin.html" id="rootmenu">Menu root</a></li>
-                <li><a class="dropdown-item" href="#" id="btnCerrSes">Cerrar sesión</a></li>
+    <nav class="navbar navbar-expand-md fixed-top container-fluid Arriba ">
+        <a class="navbar-brand d-flex align-items-center" href="#" data-aos="fade-right" data-aos-duration="2000">
+          <img src="../Accesorios/LogoBitnessGym.png" alt="Logo BitnessGym" width="80px" class="ms-2">
+          <img src="../Accesorios/Bitnessgym.png" height="110px">
+        </a>
+        <button class="navbar-toggler me-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" data-aos="fade-left" data-aos-duration="2000">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto justify-content-center align-content-center">
+              <a class="nav-link btn text-white"   href="#txtSucursales" data-aos="fade-down" data-aos-duration="1000"><button class="button type1"> <span class="btn-txt">Sucursal</span></button></a>
+              <li class="nav-item">
+                <a class="nav-link btn text-white" href="Productos.html" data-aos="fade-down" data-aos-duration="1500"><button class="button type1"> <span class="btn-txt">Productos</span></button></a>
+              </li>
+              <a href="carrito.html" class="me-2 mt-2 ms-3" id="carrito" data-aos="fade-down" data-aos-duration="1500"><img src="../Accesorios/carrito.svg" alt="Carrito"></a>
+              <li class="nav-item" id="inicioSes">
+                  <a class="nav-link btn text-white" href="Login.html" data-aos="fade-down" data-aos-duration="2000"><button class="button type1"> <span class="btn-txt">Iniciar Sesión</span></button></a>
+              </li>
+              <li class="nav-item dropdown mt-3 ">
+                <a class="nav-link dropdown-toggle" href="#" id="nomUsu" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-aos="fade-left" data-aos-duration="2000">Usuario</a>
+                  <ul class="dropdown-menu dropdown-menu-end DropdownEst"  data-aos="fade-left" data-aos-duration="2000">
+                    <li><a class="dropdown-item" href="admin.html" id="rootmenu">Menu Admin</a></li>
+                    <li><a class="dropdown-item text-white" href="datosUsuarios.html" id="btnCuenta">Ver tu Cuenta</a></li>
+                    <li><a class="dropdown-item" href="#" id="btnCerrSes">Cerrar sesión</a></li>
+                </ul>
+            </li>
             </ul>
-        </li>
-        </ul>
-      </div>
-</nav>
+          </div>
+      </nav>
 
         <!-- Ajustar el margen superior aquí -->
         <div class="container mt-4">
