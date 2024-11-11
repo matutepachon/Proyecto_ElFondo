@@ -17,7 +17,7 @@
 <body id="index">
   <main>
     <nav class="navbar navbar-expand-md fixed-top container-fluid Arriba ">
-      <a class="navbar-brand d-flex align-items-center" href="#" data-aos="fade-right" data-aos-duration="2000">
+      <a class="navbar-brand d-flex align-items-center" href="../Vistas/index.html" data-aos="fade-right" data-aos-duration="2000">
         <img src="../Accesorios/LogoBitnessGym.png" alt="Logo BitnessGym" width="80px" class="ms-2">
         <img src="../Accesorios/Bitnessgym.png" height="110px">
       </a>
@@ -26,37 +26,41 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto justify-content-center align-content-center">
-            <a class="nav-link btn text-white"   href="#txtSucursales" data-aos="fade-down" data-aos-duration="1000"><button class="button type1"> <span class="btn-txt">Sucursal</span></button></a>
+            <a class="nav-link btn text-white"   href="../Vistas/index.html#txtSucursales" data-aos="fade-down" data-aos-duration="1000"><button class="button type1"> <span class="btn-txt">Sucursal</span></button></a>
             <li class="nav-item">
               <a class="nav-link btn text-white" href="Productos.html" data-aos="fade-down" data-aos-duration="1500"><button class="button type1"> <span class="btn-txt">Productos</span></button></a>
             </li>
-            <a href="carrito.html" class="me-2 mt-2 ms-3" id="carrito" data-aos="fade-down" data-aos-duration="1500"><img src="../Accesorios/carrito.svg" alt="Carrito"></a>
+            <a href="carrito.html" class="me-2 mt-1 ms-3 nav-link btn text-white " id="carrito" data-aos="fade-down" data-aos-duration="1500"><img src="../Accesorios/carrito.svg" alt="Carrito"></a>
             <li class="nav-item" id="inicioSes">
                 <a class="nav-link btn text-white" href="Login.html" data-aos="fade-down" data-aos-duration="2000"><button class="button type1"> <span class="btn-txt">Iniciar Sesión</span></button></a>
             </li>
             <li class="nav-item dropdown mt-3 ">
-              <a class="nav-link dropdown-toggle" href="#" id="nomUsu" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-aos="fade-left" data-aos-duration="2000">Usuario</a>
-                <ul class="dropdown-menu dropdown-menu-end DropdownEst"  data-aos="fade-left" data-aos-duration="2000">
-                  <li><a class="dropdown-item" href="admin.html" id="rootmenu">Menu Admin</a></li>
-                  <li><a class="dropdown-item text-white" href="datosUsuarios.html" id="btnCuenta">Ver tu Cuenta</a></li>
-                  <li><a class="dropdown-item" href="#" id="btnCerrSes">Cerrar sesión</a></li>
+              <a class="nav-link dropdown-toggle" id="nomUsu" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-aos="fade-left" data-aos-duration="2000"></a>
+                <ul class=" dropdown-menu dropdown-menu-end DropdownEst mt-4 justify-content-center align-items-center rounded-3"  data-aos="fade-left" data-aos-duration="2000">
+                  <li class="my-3 mx-3"><a class="dropdown-item rounded-5" href="admin.html" id="admMenu">Menu Admin</a></li>
+                  <li class="my-3 mx-3"><a class="dropdown-item text-white rounded-5" href="datosUsuarios.html" id="btnCuenta">Ver tu Cuenta</a></li>
+                  <li class="my-3 mx-3"><a class="dropdown-item rounded-5" id="btnCerrSes">Cerrar sesión</a></li>
               </ul>
-          </li>
+            </li>
           </ul>
+          
         </div>
     </nav>
-        <div class="mt-4"><p>d</p></div>
-        <!-- Ajustar el margen superior aquí -->
-        <div class="container mb-4">
-            <div class="row " id="container" data-aos="fade-up" data-aos-duration="1000">
-                <!-- Aquí se cargarán las tarjetas de productos -->
-            </div>
+
+    <section class="row mt-3 ms-2 mb-4">
+      <a href="../Vistas/admin.html" class="col-1 btn btnAtras mb-4" data-aos="fade-right" data-aos-duration="1000">Atras</a>
+  </section>
+
+    <div class="container mb-4 mt-5">
+        <div class="row" id="container" data-aos="fade-up" data-aos-duration="1000">
+            <!-- Aquí se cargarán las tarjetas de productos -->
         </div>
-      
-        <footer id="PieDePag" class="text-center">
-            <p class="text-center overflow-auto">Puede contactar con los desarrolladores en elfondo2024@gmail.com</p>
-            <p>Copyright© UTU Pando. Derechos reservados.</p>
-        </footer>
+    </div>
+  
+    <footer id="PieDePag" class="text-center">
+        <p class="text-center overflow-auto">Puede contactar con los desarrolladores en elfondo2024@gmail.com</p>
+        <p>Copyright© UTU Pando. Derechos reservados.</p>
+    </footer>
     </main>
     <script src="../Contolador/carritos.js"></script>
     <script src="../Contolador/productos.js"></script>

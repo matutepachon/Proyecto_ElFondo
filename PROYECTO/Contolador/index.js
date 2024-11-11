@@ -11,12 +11,19 @@ document.addEventListener('DOMContentLoaded', function() {
             const nomUsu = document.getElementById('nomUsu');
             const inicioSes = document.getElementById('inicioSes');
             const btnCerrSes = document.getElementById('btnCerrSes');
-            const rootMenuButton = document.getElementById('rootmenu');
+            const rootMenuButton = document.getElementById('admMenu');
             const cuenta = document.getElementById('btnCuenta');
             const carrito = document.getElementById('carrito');
 
             if (data.success) {
                 // Usuario ha iniciado sesión
+                if(data.tipo_usuario === 'cliente'){
+                    cuenta.style.display = "inline";
+                }
+
+                if(data.tipo_usuario === 'admin'){
+                    cuenta.style.display = "none";
+                }
                 
                 if (nomUsu) {
                     nomUsu.textContent = ` ${data.nombre}`; // Muestra el nombre del usuario en el menú
@@ -28,13 +35,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (btnCerrSes) {
                     btnCerrSes.style.display = 'inline'; // Muestra el botón de cuenta
                 }
-                if (cuenta) {
-                    cuenta.style.display = 'inline'; // Muestra el botón de cue
-                }
+
                 if (rootMenuButton) {
                     rootMenuButton.style.display = (data.tipo_usuario === 'admin') ? 'inline' : 'none'; // Muestra u oculta el menú root
-                    cuenta.style.display = 'none';
                 }
+
                 if (carrito) {
                     carrito.style.display = 'inline';
                 }

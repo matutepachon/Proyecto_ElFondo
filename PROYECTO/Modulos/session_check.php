@@ -2,7 +2,7 @@
 session_start();
 header('Content-Type: application/json');
 
-if (isset($_SESSION['correo']) && isset($_SESSION['nombre'])) {
+if (isset($_SESSION['ID_Usuario'])) {
     $response = [
         'success' => true,
         'nombre' => $_SESSION['nombre'],
@@ -16,3 +16,4 @@ if (isset($_SESSION['correo']) && isset($_SESSION['nombre'])) {
 
 echo json_encode($response);
 ?>
+

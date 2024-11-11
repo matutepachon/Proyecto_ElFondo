@@ -1,31 +1,3 @@
-document.addEventListener('DOMContentLoaded', function() {
-    fetch('/PROYECTO/Modulos/session_check.php')
-        
-        .then(data => {
-
-            
-            if (!data.success) {
-                Swal.fire({
-                    icon: "error",
-                    title: "No tienes permiso para acceder a esta página.",
-                    footer: '<a href="Login.html">Inicia sesión </a>'
-                }).then(() => {
-                    window.location.href = 'index.html';
-                });
-            }
-        })
-        .catch(error => {
-            console.error('Error al verificar el acceso:', error);
-            Swal.fire({
-                icon: "error",
-                title: "Error al verificar permisos.",
-                text: "Ocurrió un error al verificar el acceso. Redirigiendo...",
-            }).then(() => {
-            window.location.href = "index.html";
-            });
-        });
-    });
-
 
 class Carrito {
     constructor() {

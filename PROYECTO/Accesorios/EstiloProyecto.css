@@ -51,24 +51,58 @@
         color: #baff39;
     }
     
-    .DropdownEst{background-color: #3c3c3c;}
+    .DropdownEst{
+        background-color: #3c3c3c;
+    }
 
     #InicioSes:hover{
         background-color: #3c3c3c;
         border-color: #baff39;
         color: #baff39;
     }
-    
-    #rootmenu{
+
+    #admMenu{
         color: #baff39;
+        font-weight: bold;
         background-color: #3c3c3c;
+        font-size: 20px;
+    }
+
+    #admMenu:hover{
+        color: white;
+        font-weight: bold;
+        background-color:rgb(73, 73, 73) ;
+        font-size: 20px;
     }
 
     #btnCerrSes{
-        background-color: #3c3c3c ;
+        color: red;
+        font-weight: bold;
+        background-color: #3c3c3c;
+        font-size: 20px;
+    }
+
+    #btnCerrSes:hover{
         color: #baff39;
+        font-weight: bold;
+        background-color:rgb(73, 73, 73) ;
+        font-size: 20px;
+    }
+
+    #btnCuenta{
+        color: white;
+        font-weight: bold;
+        background-color: #3c3c3c;
+        font-size: 20px;
     }
     
+    #btnCuenta:hover{
+        color: #baff39;
+        font-weight: bold;
+        background-color:rgb(73, 73, 73) ;
+        font-size: 20px;
+    }
+
     .menuDsp{
         background-color: #3c3c3c;
         border-color: #baff39;
@@ -212,6 +246,9 @@
     
     }
     
+    .contenidoMin{
+        min-height: 800px;
+    }
     
     /* Pagina Registro */
     
@@ -264,6 +301,7 @@
 
     .txtroot{
         font-weight:bolder;
+        color:#baff39 ;
     }
     
     .btnAtras, .btnAtras:hover{
