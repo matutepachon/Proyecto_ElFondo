@@ -3,9 +3,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Verificar el acceso del usuario
     fetch('../Modulos/accesos.php')
         .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
             return response.json();
         })
         .then(data => {
@@ -106,8 +103,17 @@ document.addEventListener('DOMContentLoaded', function() {
                                         }
                                     })
                                     .catch(error => {
-                                        console.error('Error:', error);  // Muestra el error en la consola
-                                        alert('Ocurrió un error al eliminar el usuario.');
+                                        console.error('Error:', error); 
+                                        Swal.fire({
+                                            width: 350,
+                                            toast: true,
+                                            background: "Red",
+                                            color: "White",
+                                            position: "top",
+                                            title: "Ocurrio un error al borrar el Usuario",
+                                            showConfirmButton: false,
+                                            timer: 1500
+                                        });
                                     });
                                     
                                     

@@ -119,59 +119,43 @@ function agregarProducto($conn) {
 
 
 
-
-
 function modificarProducto($conn, $data) {
-    // Acceder a los datos enviados por JSON
-    $id_pro = $data['ID_Pro']; // Se utiliza para buscar el producto
-    $precio = $data['Precio'];
-    $cat_pro = $data['Cat_Pro']; // Nueva categoría de producto
-    $nombre = $data['Nom_Pro'];
-    $descuento = $data['Desc_Pro'];
-    $rut_img = $data['Rut_Img']; // Nueva ruta de la imagen
-    $descripcion= $data['Descripcion']; // Nueva descripción adicional
+    error_log("Datos recibidos: " . print_r($data, true));
 
-    // Verificar que se reciban todos los datos
-    if (empty($id_pro) || empty($precio) || empty($cat_pro) || empty($nombre) || empty($descuento) || empty($rut_img) || empty($descripcion)) {
-        echo json_encode(["message" => "Faltan datos, todos los campos son requeridos"]);
-        return;
-    }
+    $id_pro = $data['ID_Pro'] ?? null;
+    $precio = $data['Precio'] ?? null;
+    $cat_pro = $data['Cat_Pro'] ?? null;
+    $nombre = $data['Nom_Pro'] ?? null;
+    $descuento = $data['Desc_Pro'] ?? null;
+    $rut_img = $data['Rut_Img'] ?? null;
+    $descripcion = $data['Descripcion'] ?? null;
 
-    // Preparar la consulta SQL para actualizar los datos
+
     $sql = "UPDATE Producto SET Precio = ?, Cat_Pro = ?, Nom_Pro = ?, Desc_Pro = ?, Rut_Img = ?, Descripcion = ? WHERE ID_Pro = ?";
     $stmt = $conn->prepare($sql);
 
     if ($stmt === false) {
-        echo json_encode(["message" => "Error al preparar la consulta", "error" => $conn->error]);
+        echo json_encode(["success" => false, "message" => "Error al preparar la consulta", "error" => $conn->error]);
         return;
     }
 
-    // Enlazar parámetros
     $stmt->bind_param("sssssss", $precio, $cat_pro, $nombre, $descuento, $rut_img, $descripcion, $id_pro);
 
-    // Ejecutar la consulta y verificar el resultado
     if ($stmt->execute()) {
-        if ($stmt->affected_rows > 0) {
-            echo json_encode(["message" => "Producto modificado correctamente"]);
-        } else {
-            echo json_encode(["message" => "No se encontró el producto o no se modificaron los datos"]);
-        }
+        echo json_encode(["success" => true, "message" => "Producto modificado correctamente"]);
     } else {
-        echo json_encode(["message" => "Error al ejecutar la consulta", "error" => $stmt->error]);
+        echo json_encode(["success" => false, "message" => "Error al ejecutar la consulta", "error" => $stmt->error]);
     }
-    
-    // Cerrar el statement
+
     $stmt->close();
 }
 
 
-// Eliminar Producto (DELETE)
+
 function eliminarProducto($conn, $id) {
-    // Iniciar transacción para asegurar que todas las eliminaciones se realicen correctamente
     $conn->begin_transaction();
 
     try {
-        // Eliminar relaciones en otras tablas que contienen el producto
         $conn->query("DELETE FROM Incluye WHERE ID_Pro = '$id'");
         $conn->query("DELETE FROM Selecciona WHERE ID_Pro = '$id'");
         $conn->query("DELETE FROM Añade WHERE ID_Pro = '$id'");

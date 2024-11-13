@@ -219,32 +219,30 @@ function eliminarProducto(id) {
 
 
 
-// Al cargar la página
 window.onload = () => {
     cargarProductos();
-    document.getElementById('btnGuardarProducto').onclick = agregarProducto; // Vincula el botón de guardar
+    document.getElementById('btnGuardarProducto').onclick = agregarProducto; 
 };
 
 
 
 function modificarProducto(producto) {
     fetch('/PROYECTO/Modulos/productos.php', {
-        method: 'PUT', // Asumiendo que usarás el método PUT para actualizar
+        method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(producto), // Convertir el objeto a formato JSON
+        body: JSON.stringify(producto),
     })
     .then(response => {
         if (!response.ok) {
             throw new Error('Error al modificar el producto');
         }
-        return response.json(); // Obtener la respuesta en formato JSON
+        return response.json();
     })
     .then(data => {
-        // Manejar la respuesta si es necesario (p. ej., mostrar un mensaje de éxito)
         console.log('Producto modificado:', data);
-        cargarProductos(); // Volver a cargar los productos para reflejar los cambios
+        cargarProductos(); 
     })
     .catch(error => {
         console.error('Error al modificar el producto:', error);

@@ -3,9 +3,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Verificar el acceso del usuario al cargar la página
     fetch('../Modulos/accesos.php')
         .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
             return response.json();
         })
         .then(data => {
