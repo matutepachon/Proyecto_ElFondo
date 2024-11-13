@@ -6,6 +6,12 @@ require '../Configuracion/conexion.php';
 // Obtener ID del usuario logueado desde la sesión
 $idUsuario = $_SESSION['ID_Usuario'] ?? null;
 
+if (!$idUsuario) {
+    echo json_encode(["message" => "Usuario no autenticado"]);
+    http_response_code(401); // Error de autenticación
+    exit;
+}
+
 function getBodyData() {
     $data = json_decode(file_get_contents('php://input'), true);
     if (is_null($data)) {
@@ -80,24 +86,33 @@ function agregarEntrenamiento($conn, $data, $idUsuario) {
     $tipo_ent = $data['tipo_ent'];
     $tiempo_ent = $data['tiempo_ent'];
     $calor_quem = $data['calor_quem'];
-    $registro_peso = $data['peso'];
-    $registro_imc = $data['imc']; // Obtener IMC del cuerpo de la solicitud
+    $registro_peso = $data['peso'];  // Nuevo peso del usuario
+    $registro_imc = $data['imc'];    // Obtener IMC del cuerpo de la solicitud
 
     $conn->begin_transaction();
     try {
+        // Insertar el nuevo entrenamiento en la tabla Entrenamiento
         $sql1 = "INSERT INTO Entrenamiento (ID_Ent, Tipo_Ent, Tiempo_Ent, Calor_Quem, registro_peso, registro_imc) 
                  VALUES (?, ?, ?, ?, ?, ?)";
         $stmt1 = $conn->prepare($sql1);
         $stmt1->bind_param("ssiiii", $id_ent, $tipo_ent, $tiempo_ent, $calor_quem, $registro_peso, $registro_imc);
         $stmt1->execute();
 
+        // Insertar en la tabla de relación Registra
         $sql2 = "INSERT INTO Registra (ID_Ent, ID_Usuario) VALUES (?, ?)";
         $stmt2 = $conn->prepare($sql2);
         $stmt2->bind_param("si", $id_ent, $idUsuario);
         $stmt2->execute();
 
+        // Actualizar el peso del usuario logueado en la tabla Cliente
+        $sql3 = "UPDATE Cliente SET Peso = ? WHERE ID_Usuario = ?";
+        $stmt3 = $conn->prepare($sql3);
+        $stmt3->bind_param("di", $registro_peso, $idUsuario);
+        $stmt3->execute();
+
+        // Confirmar la transacción
         $conn->commit();
-        echo json_encode(["message" => "Entrenamiento agregado correctamente"]);
+        echo json_encode(["message" => "Entrenamiento agregado y peso del usuario actualizado correctamente"]);
     } catch (Exception $e) {
         $conn->rollback();
         echo json_encode(["message" => "Error al agregar entrenamiento", "error" => $e->getMessage()]);
