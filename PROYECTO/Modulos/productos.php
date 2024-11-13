@@ -166,17 +166,33 @@ function modificarProducto($conn, $data) {
 
 
 // Eliminar Producto (DELETE)
-    function eliminarProducto($conn, $id) {
-        // Eliminar la referencia a "*" en DELETE
-        $sql = "DELETE FROM Producto WHERE ID_Pro = ?"; 
+function eliminarProducto($conn, $id) {
+    // Iniciar transacción para asegurar que todas las eliminaciones se realicen correctamente
+    $conn->begin_transaction();
+
+    try {
+        // Eliminar relaciones en otras tablas que contienen el producto
+        $conn->query("DELETE FROM Incluye WHERE ID_Pro = '$id'");
+        $conn->query("DELETE FROM Selecciona WHERE ID_Pro = '$id'");
+        $conn->query("DELETE FROM Añade WHERE ID_Pro = '$id'");
+        $conn->query("DELETE FROM Guarda WHERE ID_Pro = '$id'");
+
+        $sql = "DELETE FROM Producto WHERE ID_Pro = ?";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("s", $id);
 
-        header('Content-Type: application/json'); // Asegurarse de que la respuesta sea JSON
+        header('Content-Type: application/json');
 
         if ($stmt->execute()) {
+            $conn->commit();
             echo json_encode(["message" => "Producto eliminado correctamente"]);
         } else {
+            $conn->rollback();
             echo json_encode(["message" => "Error al eliminar producto", "error" => $conn->error]);
         }
+    } catch (Exception $e) {
+        $conn->rollback();
+        echo json_encode(["message" => "Error al eliminar producto", "error" => $e->getMessage()]);
     }
+}
+

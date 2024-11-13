@@ -1,6 +1,6 @@
-
 document.addEventListener('DOMContentLoaded', function() {
-    // Verificar el acceso del usuario al cargar la página
+
+    // Verificar el acceso del usuario
     fetch('../Modulos/accesos.php')
         .then(response => {
             if (!response.ok) {
@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(data => {
             const tipoUsuario = data.tipo_usuario;
 
-            // Verifica si el usuario no es admin y está en la página de agregarEntrenador.html
+            // Verifica si el usuario no es admin y está en la página de admin.html
             if (window.location.pathname.includes('admin.html') && tipoUsuario !== 'admin') {
                 Swal.fire({
                     icon: "error",
@@ -23,7 +23,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         })
         .catch(error => {
-            
             console.error('Error al verificar el acceso:', error);
             Swal.fire({
                 icon: "error",
@@ -33,10 +32,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 window.location.href = 'index.html';
             });
         });
-    });
 
-
-document.addEventListener('DOMContentLoaded', function() {
+    // Función para cargar usuarios
     function loadUsers() {
         fetch('../Modulos/lista_usuarios.php')
             .then(response => response.json())
@@ -57,7 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             </td>
                         `;
                         tabladeUsu.appendChild(row);
-                    });alert
+                    });
 
                     // Agregar evento de eliminación a cada botón
                     document.querySelectorAll('.BorraUsu').forEach(button => {
@@ -82,41 +79,60 @@ document.addEventListener('DOMContentLoaded', function() {
                                         },
                                         body: new URLSearchParams({ usuario_id: usuarioId })
                                     })
-                                    .then(response => response.json())
+                                    .then(response => {
+                                        if (!response.ok) {
+                                            return response.text().then(text => {
+                                                console.error('Error response:', text);  // Muestra el error en la consola
+                                                throw new Error(text); // Lanza el error para capturarlo
+                                            });
+                                        }
+                                        return response.json(); // Si la respuesta es válida, la convertimos en JSON
+                                    })
                                     .then(data => {
+                                        console.log(data);  // Muestra los datos que recibimos
                                         if (data.success) {
                                             Swal.fire({
-                                            width: 250,
-                                            toast: true,
-                                            background: "#baff39",
-                                            position: "top",
-                                            title: "Usuario Eliminado",
-                                            showConfirmButton: false,
-                                            timer: 1500
-                                        });
+                                                width: 250,
+                                                toast: true,
+                                                background: "#baff39",
+                                                position: "top",
+                                                title: "Usuario Eliminado",
+                                                showConfirmButton: false,
+                                                timer: 1500
+                                            });
                                             loadUsers();
                                         } else {
-                                            alert(data.mensaje);
+                                            alert(data.mensaje); // Mostrar el mensaje de error
                                         }
                                     })
                                     .catch(error => {
-                                        console.error(error);
+                                        console.error('Error:', error);  // Muestra el error en la consola
                                         alert('Ocurrió un error al eliminar el usuario.');
                                     });
+                                    
+                                    
                                 }
                             });
                         });
                     });
                 } else {
-                    console.error(data.mensaje);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: data.mensaje || 'No se pudo cargar la lista de usuarios.'
+                    });
                 }
             })
             .catch(error => {
                 console.error(error);
-                alert('Ocurrió un error al cargar la lista de usuarios.');
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Ocurrió un error al cargar la lista de usuarios.'
+                });
             });
     }
-
     // Cargar usuarios al iniciar
     loadUsers();
+
 });

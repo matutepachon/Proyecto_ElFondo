@@ -64,23 +64,29 @@ function suscribirse(idSuscripcion) {
     .then(data => {
         if (data.success) {
             Swal.fire({
-                width: 300,
+                width: 330,
                 toast: true,
                 background: "#baff39",
                 position: "top",
-                title: "Te suscribiste Correctamente!!!",
+                title: "¡Te suscribiste Correctamente!",
                 showConfirmButton: false,
                 timer: 1500
+
+            }).then(() => {
+
+                setTimeout(() => { location.reload(); 
+                }, 200);
+
             });
         } else {
-            alertconsole.error("Hubo un error al suscribirte: " + data.error);
+            console.error("Hubo un error al suscribirte: " + data.error);
         }
     })
+    
     .catch(error => {
         Swal.fire({
             icon: "error",
-            title: "Error al Suscribirse",
-            footer: '<a href="Login.html"> Inicia sesión </a>',
+            title: "Error al Suscribirse"
         }).then(() => {
             window.location.href = 'index.html';
         });

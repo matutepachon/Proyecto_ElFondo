@@ -13,7 +13,7 @@ CREATE TABLE Usuario (
 INSERT INTO Usuario (Correo_usu, Con_Usu)
 VALUES 
      ("root@gmail.com","$2y$10$OPKMtS7oM0/0wZ8PWdVG9.6Oi0AdyUdWJum0GXUVTSCyj68W7yk/G"),
-    ('juanperez', 'contraseña123'),
+    ('juanperez@gmail.com', 'contraseña123'),
     ('maria_lopez', 'pass456')
    ;
     select*from Usuario;
@@ -22,8 +22,6 @@ CREATE TABLE Admin (
     ID_Usuario INT PRIMARY KEY,
     FOREIGN KEY (ID_Usuario) REFERENCES Usuario(ID_Usuario)
 );
-
-SELECT ID_Usuario, Nombre, Apellidos FROM Cliente;
 
 
 INSERT INTO Admin (ID_Usuario) VALUES (1);
@@ -63,7 +61,9 @@ Precio int
 
 insert into Subscripcion (ID_Subs, Inicio, Plan_Sub, Vencimiento, Estado, Tipo, Precio)
 values ('SUBS1', '2024-01-01', 'Anual', '2024-12-31', 'Activa', 'Básico', 5000),
-('SUBS2', '2024-06-01', 'Mensual', '2025-05-31', 'Activa', 'Premium', 400);
+
+('SUBS2', '2024-06-01', 'Mensual', '2025-05-31', 'Activa', 'Premium', 400),
+('SUBS423', '2024-06-01', 'Mensual', '2025-05-31', 'Activa', 'Premium', 300);
 
 
 create table Rutina (
@@ -321,25 +321,3 @@ foreign key (ID_Fact) references Factura(ID_Fact)
 insert into F_Crea (ID_Compra, ID_Fact)
 values ('COMP1', 'FACT1'),
 ('COMP2', 'FACT2');
-
--- Consultas
-
--- Clientes
-select * from Usuario;
-
--- Clientes y sus Subscripciones
-SELECT 
-    c.Nombre, c.Apellidos, s.Plan_Sub
-FROM
-    Cliente c
-        JOIN
-    Elige e ON c.ID_Usuario = e.ID_Cliente
-        JOIN
-    Subscripcion s ON e.ID_Subs = s.ID_Subs;
-    
-    
-SELECT c.ID_Usuario, c.Nombre, c.Apellidos,u.Correo_usu FROM Cliente c JOIN Usuario u ON c.ID_Usuario = u.ID_Usuario;
-    
-    
-    
-    

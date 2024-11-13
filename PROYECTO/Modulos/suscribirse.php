@@ -25,6 +25,7 @@ if (isset($data['idSuscripcion'])) {
         $stmt->bind_param("is", $idUsuario, $idSuscripcion); // Asegúrate de que el tipo de dato sea correcto
 
         if ($stmt->execute()) {
+            $_SESSION["idSuscripcion"]= $idSuscripcion;
             echo json_encode(['success' => true, 'message' => 'Te has suscrito exitosamente.']);
         } else {
             echo json_encode(['success' => false, 'error' => 'No se pudo suscribir.']);

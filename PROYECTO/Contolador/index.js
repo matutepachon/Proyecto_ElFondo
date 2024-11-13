@@ -2,9 +2,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Verificar la sesión del usuario al cargar la página
     fetch('/PROYECTO/Modulos/accesos.php')
         .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
             return response.json();
         })
         .then(data => {
@@ -29,6 +26,13 @@ document.addEventListener('DOMContentLoaded', function() {
                     nomUsu.textContent = ` ${data.nombre}`; // Muestra el nombre del usuario en el menú
                     nomUsu.style.display = 'inline'; // Asegúrate de que el enlace del usuario esté visible
                 }
+
+
+                if(data.tipo_usuario === 'entrenador'){
+                    cuenta.style.display = "none";
+                    nomUsu.textContent="Entrenador"
+                }
+
                 if (inicioSes) {
                     inicioSes.style.display = 'none'; // Oculta el botón de Iniciar Sesión
                 }
@@ -70,6 +74,30 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error('Error:', error);
             alert('Ocurrió un error al verificar la sesión.');
         });
+
+        fetch('/PROYECTO/Modulos/Suscripcion.php')
+        .then(response => {
+            return response.json();
+        })
+        .then(data => {
+            const Suscripcion = document.getElementById('suscripcionesContainer');
+            const suscripcionTxt = document.getElementById('suscripcionTxt');
+            suscripcionTxt
+            if (data.success) {
+                if(Suscripcion){
+                    Suscripcion.style.display= "none"
+                    suscripcionTxt.textContent=" Ya estas suscrito Muchas Gracias"
+                }
+
+            } else {
+                console.log("No suscrito")
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Ocurrió un error al verificar la Suscripcion.');
+        });
+
 
     document.getElementById('btnCerrSes').addEventListener('click', function() {
         fetch('http://localhost/PROYECTO/Modulos/logout.php', {
