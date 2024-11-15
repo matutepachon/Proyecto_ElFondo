@@ -1,25 +1,24 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener("DOMContentLoaded", function() {
     // Verificar el acceso del usuario al cargar la página
-    fetch('../Modulos/accesos.php')
+    fetch("../Modulos/accesos.php")
         .then(response => {
             return response.json();
         })
         .then(data => {
             const tipoUsuario = data.tipo_usuario;
 
-            // Verifica si el usuario no es admin y está en la página de agregarEntrenador.html
-            if (window.location.pathname.includes('agregarEntrenador.html') && tipoUsuario !== 'admin') {
+           if (window.location.pathname.includes("agregarEntrenador.html") && tipoUsuario !== 'admin') {
                 Swal.fire({
                     icon: "error",
                     title: "No tienes permiso para acceder a esta página.",
                     footer: '<a href="Login.html">Inicia sesión como admin</a>'
                 }).then(() => {
-                    window.location.href = 'index.html';
+                    window.location.href = "index.html";
                 });
             }
         })
         .catch(error => {
-            console.error('Error al verificar el acceso:', error);
+            console.error(error);
             Swal.fire({
                 icon: "error",
                 title: "Error al verificar permisos.",
@@ -30,22 +29,21 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     
 
-    document.getElementById('agregarEntrenador').addEventListener('submit', function(event) {
+    document.getElementById("agregarEntrenador").addEventListener("submit", function(event) {
         event.preventDefault(); 
         
         const formData = new FormData(this);
 
-        fetch('../Modulos/agregarEntrenador.php', {
-            method: 'POST',
+        fetch("../Modulos/agregarEntrenador.php", {
+            method: "POST",
             body: formData
         })
         .then(response => response.text())
         .then(text => {
-            console.log('Respuesta del servidor:', text);
+            console.log("Respuesta del servidor:", text);
 
             try {
-                const data = JSON.parse(text);
-                const mensaje = document.getElementById('mensaje');
+                const data = JSON.parse(text)
 
                 if (data.success) {
                     Swal.fire({
@@ -70,13 +68,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
                 
             } catch (error) {
-                console.error('Error al analizar JSON:', error);
-                alert('Se recibió una respuesta inesperada del servidor.');
+                console.error(error);
             }
         })
         .catch(error => {
-            console.error('Error en la solicitud:', error);
-            alert('Ocurrió un error al enviar la solicitud.');
+            console.error("Error en la solicitud:", error);
         });
     });
 });

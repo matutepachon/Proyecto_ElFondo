@@ -2,7 +2,7 @@
 session_start();
 header('Content-Type: application/json');
 
-include('../configuracion/conexion.php');
+include('../Configuracion/conexion.php');
 
 $query = "SELECT ID_Subs, Plan_Sub, Tipo, Precio, Estado FROM Subscripcion";
 $result = $conn->query($query);

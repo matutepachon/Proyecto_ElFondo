@@ -1,7 +1,7 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener("DOMContentLoaded", function() {
 
     // Verificar el acceso del usuario
-    fetch('../Modulos/accesos.php')
+    fetch("../Modulos/accesos.php")
         .then(response => {
             return response.json();
         })
@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const tipoUsuario = data.tipo_usuario;
 
             // Verifica si el usuario no es admin y está en la página de admin.html
-            if (window.location.pathname.includes('admin.html') && tipoUsuario !== 'admin') {
+            if (window.location.pathname.includes("admin.html") && tipoUsuario !== "admin") {
                 Swal.fire({
                     icon: "error",
                     title: "No tienes permiso para acceder a esta página.",
@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         })
         .catch(error => {
-            console.error('Error al verificar el acceso:', error);
+            console.error("Error al verificar el acceso: ", error);
             Swal.fire({
                 icon: "error",
                 title: "Error al verificar permisos.",
@@ -32,15 +32,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Función para cargar usuarios
     function loadUsers() {
-        fetch('../Modulos/lista_usuarios.php')
+        fetch("../Modulos/lista_usuarios.php")
             .then(response => response.json())
             .then(data => {
-                const tabladeUsu = document.getElementById('tabladeUsu');
-                tabladeUsu.innerHTML = '';
+                const tabladeUsu = document.getElementById("tabladeUsu");
+                tabladeUsu.innerHTML = "";
 
                 if (data.success) {
                     data.usuarios.forEach(usuario => {
-                        const row = document.createElement('tr');
+                        const row = document.createElement("tr");
                         row.innerHTML = `
                             <td>${usuario.ID_Usuario}</td>
                             <td>${usuario.Nombre}</td>
@@ -52,12 +52,10 @@ document.addEventListener('DOMContentLoaded', function() {
                         `;
                         tabladeUsu.appendChild(row);
                     });
-
-                    // Agregar evento de eliminación a cada botón
-                    document.querySelectorAll('.BorraUsu').forEach(button => {
-                        button.addEventListener('click', function() {
-                            const usuarioId = this.getAttribute('data-id');
-                            // Confirmar antes de eliminar
+   
+                    document.querySelectorAll(".BorraUsu").forEach(button => {
+                        button.addEventListener("click", function() {
+                            const usuarioId = this.getAttribute("data-id");
                             Swal.fire({
                                 title: "¿Estás seguro?",
                                 text: "El usuario " + usuarioId + " se eliminará permanentemente.",
@@ -69,24 +67,18 @@ document.addEventListener('DOMContentLoaded', function() {
                                 confirmButtonText: "Sí"
                             }).then((result) => {
                                 if (result.isConfirmed) {
-                                    fetch('../Modulos/eliminar_usuario.php', {
-                                        method: 'POST',
+                                    fetch("../Modulos/eliminar_usuario.php", {
+                                        method: "POST",
                                         headers: {
                                             'Content-Type': 'application/x-www-form-urlencoded'
                                         },
                                         body: new URLSearchParams({ usuario_id: usuarioId })
                                     })
                                     .then(response => {
-                                        if (!response.ok) {
-                                            return response.text().then(text => {
-                                                console.error('Error response:', text);  // Muestra el error en la consola
-                                                throw new Error(text); // Lanza el error para capturarlo
-                                            });
-                                        }
-                                        return response.json(); // Si la respuesta es válida, la convertimos en JSON
+                                        return response.json();
                                     })
                                     .then(data => {
-                                        console.log(data);  // Muestra los datos que recibimos
+                                        console.log(data);
                                         if (data.success) {
                                             Swal.fire({
                                                 width: 250,
@@ -99,11 +91,11 @@ document.addEventListener('DOMContentLoaded', function() {
                                             });
                                             loadUsers();
                                         } else {
-                                            alert(data.mensaje); // Mostrar el mensaje de error
+                                            console.error(data.mensaje);
                                         }
                                     })
                                     .catch(error => {
-                                        console.error('Error:', error); 
+                                        console.error(error); 
                                         Swal.fire({
                                             width: 350,
                                             toast: true,
@@ -123,22 +115,22 @@ document.addEventListener('DOMContentLoaded', function() {
                     });
                 } else {
                     Swal.fire({
-                        icon: 'error',
-                        title: 'Error',
-                        text: data.mensaje || 'No se pudo cargar la lista de usuarios.'
+                        icon: "error",
+                        title: "Error",
+                        text: "No se pudo cargar la lista de usuarios."
                     });
                 }
             })
             .catch(error => {
                 console.error(error);
                 Swal.fire({
-                    icon: 'error',
-                    title: 'Error',
-                    text: 'Ocurrió un error al cargar la lista de usuarios.'
+                    icon: "error",
+                    title: "Error",
+                    text: "Ocurrió un error al cargar la lista de usuarios."
                 });
             });
     }
-    // Cargar usuarios al iniciar
+    
     loadUsers();
 
 });

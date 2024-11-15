@@ -1,12 +1,9 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener("DOMContentLoaded", function() {
     fetch("../Modulos/verSuscripciones.php")
         .then(response => response.json())
         .then(data => {
-            console.log(data); // Ver qué contiene 'data'
-            
-            // Verificamos si la respuesta es un arreglo
+
             if (Array.isArray(data)) {
-                // Si la respuesta es un arreglo, mostramos las suscripciones
                 const container = document.getElementById("suscripcionesContainer");
                 data.forEach(suscripcion => {
                     const card = document.createElement("div");
@@ -32,29 +29,53 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 });
 
-// Función para borrar una suscripción
 function borrarSuscripcion(id) {
-    console.log('ID de suscripción a borrar:', id);  // Verifica que el ID es correcto
-    if (confirm("¿Estás seguro de que deseas borrar esta suscripción?")) {
-        fetch('../Modulos/borrarSuscripcion.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ id_suscripcion: id })
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                alert("Suscripción eliminada correctamente.");
-                location.reload(); // Recargar la página para actualizar las suscripciones
-            } else {
-                alert("Hubo un problema al eliminar la suscripción." + data.error);
-            }
-        })
-        .catch(error => {
-            console.error("Error al borrar suscripción:", error);
-            alert("Hubo un problema al eliminar la suscripción.");
-        });
-    }
+    Swal.fire({
+        title: "¿Estás seguro?",
+        text: "La suscripcion " + id + " se eliminará permanentemente.",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#baff39",
+        cancelButtonText: "Cancelar",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Sí"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            fetch("../Modulos/borrarSuscripcion.php", {
+                method: "POST",
+                body: JSON.stringify({ id_suscripcion: id })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) { 
+                    Swal.fire({
+                    width: 250,
+                    toast: true,
+                    background: "#baff39",
+                    position: "top",
+                    title: "Suscripcion Eliminada",
+                    showConfirmButton: false,
+                    timer: 1500
+                    }).then(() => {
+                        setTimeout(() => { location.reload(); 
+                        }, 200);
+        
+                    });
+                } else {
+                    Swal.fire({
+                        width: 370,
+                        toast: true,
+                        background: "red",
+                        position: "top",
+                        title: "Error al eliminar La suscripcion",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });                }
+            })
+            .catch(error => {
+                console.error("Error al borrar suscripción:", error);
+                alert("Hubo un problema al eliminar la suscripción.");
+            });
+        }
+    });
 }

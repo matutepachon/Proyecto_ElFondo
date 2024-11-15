@@ -1,11 +1,11 @@
-document.addEventListener('DOMContentLoaded', function() {
-    fetch('../Modulos/Suscripcion.php')
+document.addEventListener("DOMContentLoaded", function() {
+    fetch("../Modulos/Suscripcion.php")
     .then(response => {
         return response.json();
     })
     .then(data => {
-        const Suscripcion = document.getElementById('suscripcionesContainer');
-        const suscripcionTxt = document.getElementById('suscripcionTxt');
+        const Suscripcion = document.getElementById("suscripcionesContainer");
+        const suscripcionTxt = document.getElementById("suscripcionTxt");
         suscripcionTxt
         if (data.success) {
             if(Suscripcion){
@@ -18,8 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     })
     .catch(error => {
-        console.error('Error:', error);
-        console.error('Ocurrió un error al verificar la Suscripcion.');
+        console.error(error);
     });
 
 });

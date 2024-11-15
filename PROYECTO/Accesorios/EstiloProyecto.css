@@ -433,3 +433,15 @@
     .txtSuscripcion{
         font-weight: bold;
     }
+
+    .btnAgregar{
+        border-color: #baff39;
+        background-color: #baff39;
+        color: #3c3c3c;
+    }
+
+    .btnAgregar:hover{
+        border-color: #baff39;
+        background-color: #3c3c3c;
+        color: #baff39;
+    }

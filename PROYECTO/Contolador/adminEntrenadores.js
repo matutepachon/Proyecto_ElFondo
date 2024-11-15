@@ -1,53 +1,50 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener("DOMContentLoaded", function() {
     // Verificar el acceso del usuario al cargar la página
-    fetch('../Modulos/accesos.php')
+    fetch("../Modulos/accesos.php")
         .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
             return response.json();
         })
         .then(data => {
             const tipoUsuario = data.tipo_usuario;
 
             // Verifica si el usuario no es admin y está en la página de agregarEntrenador.html
-            if (window.location.pathname.includes('adminEntrenadores.html') && tipoUsuario !== 'admin') {
+            if (window.location.pathname.includes("adminEntrenadores.html") && tipoUsuario !== 'admin') {
                 Swal.fire({
                     icon: "error",
                     title: "No tienes permiso para acceder a esta página.",
                     footer: '<a href="Login.html">Inicia sesión como admin</a>'
                 }).then(() => {
-                    window.location.href = 'index.html';
+                    window.location.href = "index.html";
                 });
             }
         })
         .catch(error => {
             
-            console.error('Error al verificar el acceso:', error);
+            console.error("Error al verificar el acceso:", error);
             Swal.fire({
                 icon: "error",
                 title: "Error al verificar permisos.",
                 text: "Ocurrió un error al verificar el acceso. Redirigiendo...",
             }).then(() => {
-                window.location.href = 'index.html';
+                window.location.href = "index.html";
             });
         });
     });
 
 
     
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener("DOMContentLoaded", function() {
     function recargaEntrenadores() {
-        fetch('../Modulos/lista_Entrenadores.php')
+        fetch("../Modulos/lista_Entrenadores.php")
             .then(response => response.json())
             .then(data => {
-                const tabladeUsu = document.getElementById('tabladeEntrenadores');
-                tabladeUsu.innerHTML = '';
+                const tabladeUsu = document.getElementById("tabladeEntrenadores");
+                tabladeUsu.innerHTML = "";
    
                 if (data.success) {
                     if (Array.isArray(data.entrenadores)) { // Verifica que sea un array
                         data.entrenadores.forEach(entrenador => {
-                            const row = document.createElement('tr');
+                            const row = document.createElement("tr");
                             row.innerHTML = `
                                 <td>${entrenador.ID_Usuario}</td>
                                 <td>${entrenador.Correo_usu}</td>
@@ -58,15 +55,12 @@ document.addEventListener('DOMContentLoaded', function() {
                             tabladeUsu.appendChild(row);
                         });
                     } else {
-                        console.error('La respuesta no contiene un array de entrenadores:', data.entrenadores);
-                        alert('Error al cargar la lista de entrenadores.');
+                        alert("Error al cargar la lista de entrenadores.");
                     }
    
-                    // Agregar evento de eliminación a cada botón
-                    document.querySelectorAll('.BorraEntrenador').forEach(button => {
-                        button.addEventListener('click', function() {
+                    document.querySelectorAll(".BorraEntrenador").forEach(button => {
+                        button.addEventListener("click", function() {
                             const usuarioId = this.getAttribute('data-id');
-                            // Confirmar antes de eliminar
                             Swal.fire({
                                 title: "¿Estás seguro?",
                                 text: "El entrenador " + usuarioId + " se eliminará permanentemente.",
@@ -78,11 +72,8 @@ document.addEventListener('DOMContentLoaded', function() {
                                 confirmButtonText: "Sí"
                             }).then((result) => {
                                 if (result.isConfirmed) {
-                                    fetch('../Modulos/elimina_Entrenador.php', {
-                                        method: 'POST',
-                                        headers: {
-                                            'Content-Type': 'application/x-www-form-urlencoded'
-                                        },
+                                    fetch("../Modulos/elimina_Entrenador.php", {
+                                        method: "POST",
                                         body: new URLSearchParams({ usuario_id: usuarioId })
                                     })
                                     .then(response => response.json())
@@ -97,14 +88,13 @@ document.addEventListener('DOMContentLoaded', function() {
                                                 showConfirmButton: false,
                                                 timer: 1500
                                             });
-                                            recargaEntrenadores(); // Recargar la lista de entrenadores
+                                            recargaEntrenadores();
                                         } else {
                                             alert(data.mensaje);
                                         }
                                     })
                                     .catch(error => {
                                         console.error(error);
-                                        alert('Ocurrió un error al eliminar al entrenador.');
                                     });
                                 }
                             });
@@ -116,7 +106,6 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .catch(error => {
                 console.error(error);
-                alert('Ocurrió un error al cargar la lista de usuarios.');
             });
     }
    

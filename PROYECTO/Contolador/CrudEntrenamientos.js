@@ -43,10 +43,10 @@ async function obtenerAlturaCliente() {
     const data = await response.json();
 
     if (data.message) {
-        throw new Error(data.message); // Maneja el error si no se encuentra el cliente
+        throw new Error(data.message);
     }
 
-    return data.Altura; // Cambia 'altura' por 'Altura' para que coincida con el JSON devuelto
+    return data.Altura; 
 }
 
 async function calcularIMC() {
@@ -65,16 +65,15 @@ async function calcularIMC() {
     }
 }
 
-// Llama a la función calcularIMC cuando el peso cambia
 document.getElementById("peso").addEventListener("change", calcularIMC);
 
 function calcularCalorias() {
     const tiempo = document.getElementById("tiempo_ent").value;
     let calorias = 0;
 
-    if (tiempo === "1") calorias = 300; // Suponiendo 300 calorías por 1 hora
-    else if (tiempo === "2") calorias = 600; // Suponiendo 600 calorías por 2 horas
-    else if (tiempo === "3") calorias = 900; // Suponiendo 900 calorías por 3 horas
+    if (tiempo === "1") calorias = 300; 
+    else if (tiempo === "2") calorias = 600; 
+    else if (tiempo === "3") calorias = 900; 
 
     document.getElementById("calor_quem").value = calorias;
 }

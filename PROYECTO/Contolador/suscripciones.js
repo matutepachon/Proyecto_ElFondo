@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 function cargarSuscripciones() {
-    fetch('../Modulos/suscripciones.php')
+    fetch("../Modulos/suscripciones.php")
         .then(response => response.json())
         .then(data => {
             if (data.error) {
@@ -52,12 +52,8 @@ function mostrarSuscripciones(suscripciones) {
 }
 
 function suscribirse(idSuscripcion) {
-
-    fetch('../Modulos/suscribirse.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
+    fetch("../Modulos/suscribirse.php", {
+        method: "POST",
         body: JSON.stringify({ idSuscripcion: idSuscripcion })
     })
     .then(response => response.json())
@@ -73,12 +69,21 @@ function suscribirse(idSuscripcion) {
                 timer: 1500
 
             }).then(() => {
-
                 setTimeout(() => { location.reload(); 
                 }, 200);
 
             });
         } else {
+            Swal.fire({
+                width: 330,
+                toast: true,
+                background: "red",
+                position: "top",
+                title: "Error al suscribirse",
+                showConfirmButton: false,
+                timer: 1500
+
+            });
             console.error("Hubo un error al suscribirte: " + data.error);
         }
     })
@@ -88,7 +93,7 @@ function suscribirse(idSuscripcion) {
             icon: "error",
             title: "Error al Suscribirse"
         }).then(() => {
-            window.location.href = 'index.html';
+            window.location.href = "index.html";
         });
     });
 }
