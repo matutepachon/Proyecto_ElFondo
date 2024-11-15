@@ -1,5 +1,5 @@
 function cargarProductos() {
-    fetch('/PROYECTO/Modulos/productos.php')
+    fetch('../Modulos/productos.php')
         .then(response => {
             if (!response.ok) {
                 throw new Error('Error al cargar productos');
@@ -151,7 +151,7 @@ function agregarProducto() {
     };
 
     // Enviar el objeto como JSON
-    fetch('/PROYECTO/Modulos/productos.php', {
+    fetch('../Modulos/productos.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -227,7 +227,7 @@ window.onload = () => {
 
 
 function modificarProducto(producto) {
-    fetch('/PROYECTO/Modulos/productos.php', {
+    fetch('../Modulos/productos.php', {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
@@ -252,7 +252,7 @@ function modificarProducto(producto) {
 
 document.addEventListener('DOMContentLoaded', function() {
     // Verificar el acceso del usuario al cargar la página
-    fetch('/PROYECTO/Modulos/accesos.php')
+    fetch('../Modulos/accesos.php')
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');

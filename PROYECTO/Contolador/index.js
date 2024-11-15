@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Verificar la sesión del usuario al cargar la página
-    fetch('/PROYECTO/Modulos/accesos.php')
+    fetch('../Modulos/accesos.php')
         .then(response => {
             return response.json();
         })
@@ -72,30 +72,7 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .catch(error => {
             console.error('Error:', error);
-            alert('Ocurrió un error al verificar la sesión.');
-        });
-
-        fetch('/PROYECTO/Modulos/Suscripcion.php')
-        .then(response => {
-            return response.json();
-        })
-        .then(data => {
-            const Suscripcion = document.getElementById('suscripcionesContainer');
-            const suscripcionTxt = document.getElementById('suscripcionTxt');
-            suscripcionTxt
-            if (data.success) {
-                if(Suscripcion){
-                    Suscripcion.style.display= "none"
-                    suscripcionTxt.textContent=" Ya estas suscrito Muchas Gracias"
-                }
-
-            } else {
-                console.log("No suscrito")
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('Ocurrió un error al verificar la Suscripcion.');
+            console.error('Ocurrió un error al verificar la sesión.');
         });
 
 
@@ -104,9 +81,6 @@ document.addEventListener('DOMContentLoaded', function() {
             method: 'GET'
         })
         .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
             return response.json();
         })
         .then(data => {
@@ -115,12 +89,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 window.location.href = 'Login.html'; 
             } else {
                 console.error('Error:', data.message);
-                alert('Ocurrió un error al cerrar sesión.');
+                console.error('Ocurrió un error al cerrar sesión.');
             }
         })
         .catch(error => {
             console.error('Error:', error);
-            alert('Ocurrió un error al enviar la solicitud.');
+            console.error('Ocurrió un error al enviar la solicitud.');
         });
     });
     

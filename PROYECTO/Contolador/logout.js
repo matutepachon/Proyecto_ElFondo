@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('btnCerrSes').addEventListener('click', function() {
-        fetch('/PROYECTO/Modulos/logout.php', {
+        fetch('../Modulos/logout.php', {
             method: 'GET'
         })
 

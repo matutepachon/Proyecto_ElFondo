@@ -21,11 +21,11 @@ function mostrarSuscripciones(suscripciones) {
     const suscrp = document.getElementById("suscripcionesContainer");
 
 
-    suscrp.innerHTML = ''; // Limpiar el contenedor
+    suscrp.innerHTML = '';
 
     suscripciones.forEach(suscripcion => {
         const card = document.createElement("div");
-        card.className = "col-md-4"; // Ancho de 4 columnas en pantallas medianas
+        card.className = "col-md-4";
 
         card.innerHTML = `
         <div class="card mb-4 rounded-4" style="background-color: #ffffff; color: #3c3c3c; border: 1px solid #e0e0e0;">

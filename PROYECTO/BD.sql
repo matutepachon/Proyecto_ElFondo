@@ -58,6 +58,7 @@ Estado varchar(20),
 Tipo varchar(50),
 Precio int
 );
+select * from Subscripcion;
 
 insert into Subscripcion (ID_Subs, Inicio, Plan_Sub, Vencimiento, Estado, Tipo, Precio)
 values ('SUBS1', '2024-01-01', 'Anual', '2024-12-31', 'Activa', 'Básico', 5000),
@@ -321,3 +322,33 @@ foreign key (ID_Fact) references Factura(ID_Fact)
 insert into F_Crea (ID_Compra, ID_Fact)
 values ('COMP1', 'FACT1'),
 ('COMP2', 'FACT2');
+
+-- Consultas
+
+-- Clientes
+select * from Usuario;
+
+-- Clientes y sus Subscripciones
+SELECT 
+    c.Nombre, c.Apellidos, s.Plan_Sub
+FROM
+    Cliente c
+        JOIN
+    Elige e ON c.ID_Usuario = e.ID_Cliente
+        JOIN
+    Subscripcion s ON e.ID_Subs = s.ID_Subs;
+    
+    
+    
+    SELECT 1 FROM Elige WHERE ID_Cliente = 6;
+    
+    
+    DESCRIBE Elige;
+DESCRIBE Ofrece;
+DESCRIBE S_Guarda;
+DESCRIBE Compra;
+DESCRIBE Factura;
+DESCRIBE Subscripcion;
+    
+    select * from Elige;
+    SELECT Nombre, Apellidos, Cedula, Edad, Peso, Altura, Centro_salud, Fecha_registro FROM Cliente WHERE ID_Usuario = 5

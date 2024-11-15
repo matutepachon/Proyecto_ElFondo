@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Verificar el acceso del usuario al cargar la página
-    fetch('/PROYECTO/Modulos/accesos.php')
+    fetch('../Modulos/accesos.php')
         .then(response => {
             return response.json();
         })
@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         const formData = new FormData(this);
 
-        fetch('/PROYECTO/Modulos/agregarEntrenador.php', {
+        fetch('../Modulos/agregarEntrenador.php', {
             method: 'POST',
             body: formData
         })

@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         const formData = new FormData(this);
 
-        fetch('/PROYECTO/Modulos/registro.php', {
+        fetch('../Modulos/registro.php', {
             method: 'POST',
             body: formData
         })

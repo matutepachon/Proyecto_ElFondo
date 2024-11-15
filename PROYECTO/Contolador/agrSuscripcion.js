@@ -1,38 +1,26 @@
-document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('btnSuscripcion').addEventListener('submit', function(event) {
-        event.preventDefault(); 
-        
-        const formData = new FormData(this);
-    fetch('/PROYECTO/Modulos/agrSuscripcion.php', {
+
+document.getElementById("añadSub").addEventListener("submit", function(e) {
+    e.preventDefault();  // Evita que la página se recargue
+
+    // Crear un nuevo objeto FormData a partir del formulario
+    const formData = new FormData(this);
+
+    // Enviar los datos mediante Fetch a PHP
+    fetch('../Modulos/agregarSuscripcion.php', {
         method: 'POST',
-        body: formData
+        body: formData  // Aquí simplemente pasamos el objeto FormData
     })
-    .then(response => response.json())
+    .then(response => response.json())  // Convertir la respuesta en JSON
     .then(data => {
+        // Verificar si la respuesta contiene éxito o error
         if (data.success) {
-            Swal.fire({
-                width: 300,
-                toast: true,
-                background: "#baff39",
-                position: "top",
-                title: "Suscripcion creada con exito",
-                showConfirmButton: false,
-                timer: 1500
-            });
+            alert("Suscripción agregada correctamente");
         } else {
-            Swal.fire({
-            width: 300,
-            toast: true,
-            background: "#baff39",
-            position: "top",
-            title: "Error al crear la suscripcion.",
-            showConfirmButton: false,
-            timer: 1500
-        });
-     }
+            alert("Error al agregar suscripción: " + data.message);
+        }
     })
-    .catch(error => console.error('Error al agregar la Suscripcion:', error));
-
-});
-
+    .catch(error => {
+        console.error('Error al comunicarse con el servidor:', error);
+        alert('Hubo un error al procesar la solicitud.');
+    });
 });

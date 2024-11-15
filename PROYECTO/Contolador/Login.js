@@ -3,7 +3,7 @@ document.getElementById('login').addEventListener('submit', function(event) {
 
     const formData = new FormData(this);
 
-    fetch('/PROYECTO/Modulos/login.php', {
+    fetch('../Modulos/login.php', {
         method: 'POST',
         body: formData
     })
