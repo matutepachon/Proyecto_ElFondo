@@ -1,4 +1,39 @@
 document.addEventListener("DOMContentLoaded", function() {
+    // Verificar el acceso del usuario al cargar la página
+    fetch("../Modulos/accesos.php")
+        .then(response => {
+            return response.json();
+        })
+        .then(data => {
+            const tipoUsuario = data.tipo_usuario;
+
+            // Verifica si el usuario no es admin y está en la página de agregarEntrenador.html
+            if (window.location.pathname.includes("adminEntrenadores.html") && tipoUsuario !== 'admin') {
+                Swal.fire({
+                    icon: "error",
+                    title: "No tienes permiso para acceder a esta página.",
+                    footer: '<a href="Login.html">Inicia sesión como admin</a>'
+                }).then(() => {
+                    window.location.href = "index.html";
+                });
+            }
+        })
+        .catch(error => {
+            
+            console.error("Error al verificar el acceso:", error);
+            Swal.fire({
+                icon: "error",
+                title: "Error al verificar permisos.",
+                text: "Ocurrió un error al verificar el acceso. Redirigiendo...",
+            }).then(() => {
+                window.location.href = "index.html";
+            });
+        });
+    });
+
+
+
+document.addEventListener("DOMContentLoaded", function() {
     fetch("../Modulos/verSuscripciones.php")
         .then(response => response.json())
         .then(data => {

@@ -349,6 +349,8 @@ DESCRIBE S_Guarda;
 DESCRIBE Compra;
 DESCRIBE Factura;
 DESCRIBE Subscripcion;
+
+SELECT ID_Subs, Plan_Sub, Tipo, Precio, Estado FROM Subscripcion WHERE Estado = 'Activa' ;
     
     select * from Elige;
     SELECT Nombre, Apellidos, Cedula, Edad, Peso, Altura, Centro_salud, Fecha_registro FROM Cliente WHERE ID_Usuario = 5

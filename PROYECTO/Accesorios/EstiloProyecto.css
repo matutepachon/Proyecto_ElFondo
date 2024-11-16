@@ -139,7 +139,7 @@
     #PieDePag{
         position: absolute;
         color: #baff39;
-        background-color: black;
+        background-color: #3c3c3c;
         left: 0px;
         right: 0px;
         
@@ -444,4 +444,46 @@
         border-color: #baff39;
         background-color: #3c3c3c;
         color: #baff39;
+    }
+
+    #btdeSuscribirse{
+        color: red;
+        font-weight: bold;
+        background-color: #3c3c3c;
+        font-size: 20px;
+    }
+
+    #btdeSuscribirse:hover{
+        color: #baff39;
+        font-weight: bold;
+        background-color:rgb(73, 73, 73) ;
+        font-size: 20px;
+    }
+
+
+    #buscador:focus {
+        box-shadow: 0 0 10px #baff39;
+        border-color: #baff39; 
+    }
+
+    #btnbuscador{
+        background-color: #baff39;
+        border-color: #baff39;
+    }
+
+    #btnbuscador:hover{
+        background-color: #3c3c3c;
+        border-color: #baff39;  
+        color: #baff39;
+    }
+
+    #txtNoencontrado{
+        font-family: 20px;
+        font-weight: bold;
+        
+
+    }
+
+    #container{
+        min-height: 700px;
     }

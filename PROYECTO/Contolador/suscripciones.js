@@ -73,15 +73,13 @@ function suscribirse(idSuscripcion) {
             });
         } else {
             Swal.fire({
-                width: 330,
-                toast: true,
-                background: "red",
-                position: "top",
-                title: "Error al suscribirse",
-                showConfirmButton: false,
-                timer: 1500
-
+                icon: "error",
+                title: "Inicia sesion para Suscribirte.",
+                text: "Ocurrió un error al verificar el acceso.",
+            }).then(() => {
+            window.location.href = "Login.html";
             });
+
             console.error("Hubo un error al suscribirte: " + data.error);
         }
     })

@@ -13,7 +13,7 @@
 
 <body id="index">
 
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top mb-3">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container-fluid">
       <!-- Logo y nombre -->
       <a class="navbar-brand d-flex align-items-center" href="index.html">
@@ -60,10 +60,9 @@
   </nav>
 
   <div class="container mt-5">
-    <h2 class="text-center ">Registro de Entrenamientos</h2>
+    <h2 class="text-center">Registro de Entrenamientos</h2>
     <form id="entrenamientoForm" class="mt-4">
         <div class="form-group">
-
             <label for="tipo_ent">Tipo de Entrenamiento:</label>
             <select id="tipo_ent" class="form-control" required>
                 <option value="Cardiovascular">Cardiovascular</option>
@@ -79,8 +78,6 @@
                 <option value="1">1 hora</option>
                 <option value="2">2 horas</option>
                 <option value="3">3 horas</option>
-                <option value="4">4 horas</option>
-                <option value="5">5 horas</option>
             </select>
         </div>
 
@@ -103,142 +100,14 @@
     </form>
 </div>
 
-<button id="listarEntrenamientosBtn">Listar Entrenamientos</button>
-
-<!-- Modal para mostrar los entrenamientos -->
-<div id="modalEntrenamientos" class="modal">
-    <div class="modal-content">
-        <h2>Lista de Entrenamientos</h2>
-        <div id="entrenamientosLista">
-            <!-- Aquí se agregarán los entrenamientos -->
-        </div>
-        <button id="cerrarModalBtn">Cerrar</button>
-    </div>
-</div>
-
-<!-- Agregar algo de estilo básico -->
-<style>
-    .modal {
-        display: none;
-        position: fixed;
-        z-index: 1;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        overflow: auto;
-        background-color: rgb(0, 0, 0);
-        background-color: rgba(0, 0, 0, 0.4);
-        padding-top: 60px;
-    }
-    .modal-content {
-        background-color: #fff;
-        margin: 5% auto;
-        padding: 20px;
-        border: 1px solid #888;
-        width: 80%;
-        max-width: 600px;
-    }
-</style>
 
 
-
-
-
-
-
-
-<!-- Botón para mostrar la información completa -->
-<button id="mostrarInfoBtn">Mostrar Información de Entrenamientos</button>
-
-<!-- Modal para mostrar la información de entrenamientos -->
-<div id="modalInfoEntrenamientos" class="modal">
-    <div class="modal-content">
-        <h2>Información de Entrenamientos</h2>
-        
-        <h3>Cantidad de Entrenamientos</h3>
-        <p id="cantidadEntrenamientos"></p>
-
-        <h3>Minutos por Tipo de Entrenamiento</h3>
-        <table id="minutosPorTipo">
-            <thead>
-                <tr>
-                    <th>Tipo de Entrenamiento</th>
-                    <th>Minutos Acumulados</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Aquí se llenarán los datos -->
-            </tbody>
-        </table>
-
-        <button id="cerrarModalBtn">Cerrar</button>
-    </div>
-</div>
-
-<!-- Estilo básico -->
-<style>
-    .modal {
-        display: none;
-        position: fixed;
-        z-index: 1;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        overflow: auto;
-        background-color: rgb(0, 0, 0);
-        background-color: rgba(0, 0, 0, 0.4);
-        padding-top: 60px;
-    }
-    .modal-content {
-        background-color: #fff;
-        margin: 5% auto;
-        padding: 20px;
-        border: 1px solid #888;
-        width: 80%;
-        max-width: 600px;
-    }
-    table {
-        width: 100%;
-        border-collapse: collapse;
-    }
-    th, td {
-        padding: 8px;
-        text-align: left;
-        border: 1px solid #ddd;
-    }
-</style>
-
-<!-- Botón para obtener el estado de salud -->
-<div class="modal fade" id="modalEstadoSalud" tabindex="-1" aria-labelledby="modalEstadoSaludLabel" aria-hidden="true">
-  <div class="modal-dialog">
-      <div class="modal-content">
-          <div class="modal-header">
-              <h5 class="modal-title" id="modalEstadoSaludLabel">Estado de Salud</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-              <p id="estadoSalud"></p>
-              <p id="imcActual"></p>
-              <p id="variacionPeso"></p>
-          </div>
-      </div>
-  </div>
-</div>
-
-<!-- Botón para abrir el modal -->
-<button id="btnEstadoSalud" class="btn btn-primary">
-  Ver Estado de Salud
-</button>
-
-
-
-
-        
+        <footer id="PieDePag" class="text-center">
+            <p class="text-center overflow-auto">Puede contactar con los desarrolladores en elfondo2024@gmail.com</p>
+            <p>Copyright© UTU Pando. Derechos reservados.</p>
+        </footer>
     </main>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="../Contolador/CrudEntrenamientos.js"></script>
+    <script src="../Contolador/CrudEntrenamientos"></script>
     <script src="../jquery-3.7.1.min.js"></script>
     <script src="../Contolador/index.js"></script>
     <script src="../Contolador/logout.js"></script>
