@@ -4,10 +4,11 @@ header('Content-Type: application/json');
 
 include('../Configuracion/conexion.php');
 
-$query = "SELECT ID_Subs, Plan_Sub, Tipo, Precio, Estado FROM Subscripcion";
+$query = "SELECT ID_Subs, Plan_Sub, Tipo, Precio, Estado FROM Subscripcion WHERE Estado = 'Activa'";
 $result = $conn->query($query);
 
 $suscripciones = [];
+
 if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
         $suscripciones[] = $row;

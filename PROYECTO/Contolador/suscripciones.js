@@ -34,9 +34,7 @@ function mostrarSuscripciones(suscripciones) {
         <p class="card-subtitle mb-3" style="color: #6c757d;">Tipo de Plan: ${suscripcion.Tipo}</p>
         <p class="card-text fs-5">Precio: <span class="fw-semibold" style="color: #3c3c3c;">$${suscripcion.Precio}</span></p>
         <p class="card-text">
-            <span class="badge" style="background-color: ${suscripcion.Estado === 'Activa' ? '#baff39' : '#6c757d'}; color: #ffffff;">
-                Estado: ${suscripcion.Estado}
-            </span>
+            <span class="badge" style="background-color: ${suscripcion.Estado.toLowerCase() === 'activa' ? '#baff39' : '#6c757d'}; color: #ffffff;">Estado: ${suscripcion.Estado}</span>
             </p>
             <button class="btn mt-3 w-100" style="background-color: #baff39; color: #ffffff; border: none;" onclick="suscribirse('${suscripcion.ID_Subs}')">
                 Suscribirse

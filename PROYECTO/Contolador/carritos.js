@@ -42,6 +42,11 @@ class Carrito {
         }, 0);
     }
 
+    limpiarCarrito() {
+        this.productos = [];
+        localStorage.removeItem("carrito");
+    }
+
     obtenerProductos() {
         return this.productos;
     }
@@ -52,12 +57,11 @@ class Carrito {
     }
 }
 
-// Crear una instancia del carrito
 const carrito = new Carrito();
 
 function mostrarCarrito() {
     const container = document.getElementById("carrito");
-    container.innerHTML = ''; // Limpiar el contenido anterior
+    container.innerHTML = ' ';
 
     carrito.obtenerProductos().forEach(producto => {
         const col = document.createElement("div");
@@ -175,15 +179,13 @@ function mostrarCarrito() {
     const total = carrito.calcularTotal();
     totalDiv.innerHTML = `<h3>Total: $${total.toFixed(2)}</h3>`;
     
-    // Actualizar el valor del botón de PayPal
     if (typeof paypal !== "undefined") {
-        // Asegúrate de que PayPal se haya cargado antes de usarlo
         paypal.Buttons({
             createOrder: function(data, actions) {
                 return actions.order.create({
                     purchase_units: [{
                         amount: {
-                            value: total.toFixed(2) // Usar el total calculado del carrito
+                            value: total.toFixed(2) 
                         }
                     }]
                 });
@@ -217,9 +219,10 @@ function mostrarCarrito() {
                 });
                 
             }
-        }).render('#paypal-button-container'); // Renderiza el botón en el contenedor especificado
+        }).render('#paypal-button-container');
     }
 }
+
 
 
 function verificarCarrito() {

@@ -38,6 +38,7 @@ function cargarProductos() {
                 const precio = document.createElement("input");
                 precio.className = "form-control mb-2";
                 precio.type = "number";
+                precio.min = "0";
                 precio.value = producto.Precio;
                 precio.disabled = true;
 
@@ -49,14 +50,17 @@ function cargarProductos() {
 
                 const descuento = document.createElement("input");
                 descuento.className = "form-control mb-2";
-                descuento.type = "text";
-                descuento.value = producto.Desc_Pro; 
+                descuento.type = "number";
+                descuento.min = "0";
+                descuento.max = "99";
+                descuento.value = producto.Desc_Pro;
                 descuento.disabled = true;
+
 
                 const imagen = document.createElement("input");
                 imagen.className = "form-control mb-2";
                 imagen.type = "text";
-                imagen.value = producto.Rut_Img; 
+                imagen.value = producto.Rut_Img;
                 imagen.disabled = true;
 
                 const btnModificar = document.createElement("button");

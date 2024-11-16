@@ -55,53 +55,52 @@
             </button>
             <div id="container" class="row mt-4" data-aos="fade-up" data-aos-duration="1000"></div>
         </div>
-    
-       <!-- Modal para agregar producto -->
-<div class="modal fade" id="modalAgregarProducto" tabindex="-1" role="dialog" aria-labelledby="modalAgregarProductoLabel" aria-hidden="true" data-aos="fade-down" data-aos-duration="1000">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modalAgregarProductoLabel">Agregar Producto</h5>
-            </div>
-            <div class="modal-body">
-                <form id="formAgregarProducto">
-                    <div class="form-group">
-                        <label for="idProducto">ID del Producto</label>
-                        <input type="text" class="form-control" id="idProducto" required>
+            
+        <div class="modal fade" id="modalAgregarProducto" tabindex="-1" role="dialog" aria-labelledby="modalAgregarProductoLabel" aria-hidden="true" data-aos="fade-down" data-aos-duration="1000">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalAgregarProductoLabel">Agregar Producto</h5>
                     </div>
-                    <div class="form-group">
-                        <label for="nombreProducto">Nombre del Producto</label>
-                        <input type="text" class="form-control" id="nombreProducto" required>
+                    <div class="modal-body">
+                        <form id="formAgregarProducto">
+                            <div class="form-group">
+                                <label for="idProducto">ID del Producto</label>
+                                <input type="text" class="form-control" id="idProducto" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="nombreProducto">Nombre del Producto</label>
+                                <input type="text" class="form-control" id="nombreProduco" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="descripcionProducto">Descripción del Producto</label>
+                                <textarea class="form-control" id="descripcionProducto" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="precioProducto">Precio</label>
+                                <input type="number" class="form-control" min="0" max="100000000" id="precioProducto" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="categoriaProducto">Categoría</label>
+                                <input type="text" class="form-control" id="categoriaProducto" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="descuentoProducto">Descuento</label>
+                                <input type="number" class="form-control" min="0" max="99" id="descuentoProducto" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="imagenProductoURL">URL de la Imagen</label>
+                                <input type="text" class="form-control" id="imagenProductoURL" required> <!-- Input para URL de imagen -->
+                            </div>
+                        </form>
                     </div>
-                    <div class="form-group">
-                        <label for="descripcionProducto">Descripción del Producto</label>
-                        <textarea class="form-control" id="descripcionProducto" required></textarea>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-primary" id="btnGuardarProducto">Guardar Producto</button>
                     </div>
-                    <div class="form-group">
-                        <label for="precioProducto">Precio</label>
-                        <input type="text" class="form-control" id="precioProducto" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="categoriaProducto">Categoría</label>
-                        <input type="text" class="form-control" id="categoriaProducto" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="descuentoProducto">Descuento</label>
-                        <input type="text" class="form-control" id="descuentoProducto" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="imagenProductoURL">URL de la Imagen</label>
-                        <input type="text" class="form-control" id="imagenProductoURL" required> <!-- Input para URL de imagen -->
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary" id="btnGuardarProducto">Guardar Producto</button>
+                </div>
             </div>
         </div>
-    </div>
-</div>
 
 
 

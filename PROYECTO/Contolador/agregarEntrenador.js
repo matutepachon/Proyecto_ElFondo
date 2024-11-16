@@ -54,6 +54,11 @@ document.addEventListener("DOMContentLoaded", function() {
                         title: "Cuenta de entrenador creada con éxito",
                         showConfirmButton: false,
                         timer: 1500
+                    }).then(() => {
+                        setTimeout(() => { 
+                            window.location.href = "admin.html"; 
+                        }, 200);
+        
                     });
                 } else {
                     Swal.fire({

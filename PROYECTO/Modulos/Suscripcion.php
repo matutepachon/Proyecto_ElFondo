@@ -13,7 +13,7 @@ $stmt->execute();
 $result = $stmt->get_result();
 
 if ($result->fetch_assoc()) {
-    $response = ["success" => true];
+    $response = ["success" => true,];
 } else {
     $response = ["success" => false];
 }

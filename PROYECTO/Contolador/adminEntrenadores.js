@@ -80,7 +80,7 @@ document.addEventListener("DOMContentLoaded", function() {
                                     .then(data => {
                                         if (data.success) {
                                             Swal.fire({
-                                                width: 250,
+                                                width: 300,
                                                 toast: true,
                                                 background: "#baff39",
                                                 position: "top",
@@ -90,7 +90,7 @@ document.addEventListener("DOMContentLoaded", function() {
                                             });
                                             recargaEntrenadores();
                                         } else {
-                                            alert(data.mensaje);
+                                            console.error(data.mensaje);
                                         }
                                     })
                                     .catch(error => {
