@@ -4,36 +4,35 @@ use Bitnessgym;
 
 -- Entidades
 
-CREATE TABLE Usuario (
-    ID_Usuario INT PRIMARY KEY AUTO_INCREMENT,
-    Correo_usu VARCHAR(50)not null unique,
-    Con_Usu VARCHAR(2000) not null
+create table Usuario (
+    ID_Usuario int primary key auto_increment,
+    Correo_usu varchar(50)not null unique,
+    Con_Usu varchar(255) not null
 );
 
-INSERT INTO Usuario (Correo_usu, Con_Usu)
-VALUES 
+insert into Usuario (Correo_usu, Con_Usu)
+values 
      ("root@gmail.com","$2y$10$OPKMtS7oM0/0wZ8PWdVG9.6Oi0AdyUdWJum0GXUVTSCyj68W7yk/G"),
-    ('juanperez@gmail.com', 'contraseña123'),
+    ('juanperez', 'contraseña123'),
     ('maria_lopez', 'pass456')
    ;
     select*from Usuario;
 
-CREATE TABLE Admin (
-    ID_Usuario INT PRIMARY KEY,
-    FOREIGN KEY (ID_Usuario) REFERENCES Usuario(ID_Usuario)
+create table Admin (
+    ID_Usuario int primary key,
+    foreign key (ID_Usuario) references Usuario(ID_Usuario)
 );
 
 
-INSERT INTO Admin (ID_Usuario) VALUES (1);
+insert into Admin (ID_Usuario) values (1);
 
-CREATE TABLE Entrenador (
-    ID_Usuario INT PRIMARY KEY,
-    FOREIGN KEY (ID_Usuario) REFERENCES Usuario(ID_Usuario)
+create table Entrenador (
+    ID_Usuario int primary key,
+    foreign key (ID_Usuario) references Usuario(ID_Usuario)
 );
 
--- Inserta un entrenador basado en el usuario creado (por ejemplo, el usuario con ID 2 es entrenador)
-INSERT INTO Entrenador (ID_Usuario)
-VALUES (2);
+insert into Entrenador (ID_Usuario)
+values (2);
 
 create table Cliente (
 ID_Usuario int primary key,
@@ -45,7 +44,7 @@ Peso float not null,
 Altura float not null,
 Centro_salud varchar(100) not null,
 Fecha_registro timestamp default current_timestamp,
-FOREIGN KEY (ID_Usuario) REFERENCES Usuario(ID_Usuario));
+foreign key (ID_Usuario) references Usuario(ID_Usuario));
 
 
 
@@ -58,13 +57,10 @@ Estado varchar(20),
 Tipo varchar(50),
 Precio int
 );
-select * from Subscripcion;
 
 insert into Subscripcion (ID_Subs, Inicio, Plan_Sub, Vencimiento, Estado, Tipo, Precio)
 values ('SUBS1', '2024-01-01', 'Anual', '2024-12-31', 'Activa', 'Básico', 5000),
-
-('SUBS2', '2024-06-01', 'Mensual', '2025-05-31', 'Activa', 'Premium', 400),
-('SUBS423', '2024-06-01', 'Mensual', '2025-05-31', 'Activa', 'Premium', 300);
+('SUBS2', '2024-06-01', 'Mensual', '2025-05-31', 'Activa', 'Premium', 400);
 
 
 create table Rutina (
@@ -85,12 +81,12 @@ ID_Ent varchar(255) primary key,
 Tipo_Ent varchar(50),
 Tiempo_Ent int,
 Calor_Quem int,
-registro_peso int,
-registro_imc int
+registro_peso double,
+registro_imc decimal(6,2)
 
 );
-
-select*from Entrenamiento;
+insert into entrenamiento value ("1","fuerza","1","200","123","0.32");
+select*from entrenamiento;
 
 create table Producto (
 ID_Pro varchar(255) primary key,
@@ -103,11 +99,11 @@ Descripcion varchar(255)
 );
 
 insert into Producto (ID_Pro, Precio, Cat_Pro, Nom_Pro, Desc_Pro, Rut_Img, Descripcion)
-values ("PROD1", "350", "Consumible", "Gatorade", "0%", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUz9iF4Z2LYIpL53Jixr75Hq0Msj9tuiI6iQ&s","Bebida energetica"),
+values 
+("PROD1", "350", "Consumible", "Gatorade", "0%", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUz9iF4Z2LYIpL53Jixr75Hq0Msj9tuiI6iQ&s","Bebida energetica"),
 ("PROD2", "55", "Consumible", "Botella de agua","0%", "https://img.mundopmmi.com/files/base/pmmi/mundo/image/2020/01/botella_cristal_100_100.5e31c8c214c05.png?auto=format%2Ccompress&fit=max&q=70&w=1200","Botella de agua salus");
 
-
-select * from producto;
+select * from Producto;
 create table Beneficios (
 ID_Ben varchar(255) primary key,
 Descripcion varchar(255)
@@ -150,16 +146,52 @@ values ('COMP1', 350, 2),
 ('COMP2', 55, 1);
 
 create table Factura (
-ID_Fact varchar(255) primary key,
-IVA varchar(255),
-Costo int,
-Fecha_Hora datetime
+    ID_Fact varchar(255) primary key, 
+	Fecha_Emision timestamp default current_timestamp,
+	Direccion varchar (255),
+    Rut bigint,
+    Telefono int,
+    Nom_Emisor varchar (255),
+    ID_Usuario int,  
+    Cantidad int,
+	Descripcion varchar (255),
+    Precio_Unitario int,
+    Precio_Total int, 
+    Subtotal int,
+    Descuento int,
+	Constancia varchar (255),
+    Fecha_Vence timestamp default current_timestamp,
+	Iva int,
+    Imprenta varchar (255),
+    foreign key (ID_Usuario) references Usuario(ID_Usuario)  
 );
 
-insert into Factura (ID_Fact, IVA, Costo, Fecha_Hora)
-values ("FACT1", "19%", "350", "2024-08-25 12:00:00"),
-("FACT2", "19%", "55", "2024-08-25 13:00:00");
+insert into Factura (
+    ID_Fact, Direccion, Rut, Telefono, 
+    Nom_Emisor, ID_Usuario, Cantidad, Descripcion, 
+    Precio_Unitario, Precio_Total, Subtotal, Descuento, Constancia, 
+    Iva, Imprenta) 
 
+values (
+    'FACT1', 'Calle 123', 211486970016, 099123456,
+    'BitnessGym', 1, 2, "datos del producto",
+    350, 700, 700, 50, 'Recibo A123',
+    22, 'Imprenta X'
+);
+
+create table Sucursal (
+ID_Sucursal varchar(255) primary key,
+Localizacion varchar (255),
+Telefono int,
+ID_Usuario int,  
+foreign key (ID_Usuario) references Usuario(ID_Usuario)  
+);
+
+insert into Sucursal (
+ID_Sucursal,Localizacion,
+Telefono,ID_Usuario)
+
+values("Suc01","Pando, Canelones, Uruguay",22929148,2);
 -- Relaciones
 
 create table Realiza (
@@ -170,16 +202,13 @@ foreign key (ID_Rut) references Rutina(ID_Rut),
 foreign key (ID_Usuario) references Usuario(ID_Usuario)
 );
 
-insert into Realiza (ID_Rut, ID_Usuario)
-values ('RUT1', 1),
-('RUT2', 2);
 
-CREATE TABLE Registra (
+create table Registra (
     ID_Ent VARCHAR(255),
     ID_Usuario INT,
-    PRIMARY KEY (ID_Ent, ID_Usuario),
-    FOREIGN KEY (ID_Ent) REFERENCES Entrenamiento(ID_Ent),
-    FOREIGN KEY (ID_Usuario) REFERENCES Usuario(ID_Usuario)
+    primary key  (ID_Ent, ID_Usuario),
+    foreign key (ID_Ent) references Entrenamiento(ID_Ent),
+    foreign	key (ID_Usuario) references Usuario(ID_Usuario)
 );
 
 create table Elige (
@@ -191,17 +220,20 @@ foreign key (ID_Subs) references Subscripcion(ID_Subs)
 );
 
 
-create table Agrega (
-ID_Usuario int,
-ID_Rut varchar(255),
-primary key (ID_Rut),
-foreign key (ID_Usuario) references Usuario(ID_Usuario),
-foreign key (ID_Rut) references Rutina(ID_Rut)
+CREATE TABLE Agrega (
+    ID_Usuario INT,
+    ID_Rut VARCHAR(255),
+    PRIMARY KEY (ID_Usuario, ID_Rut),  -- Clave primaria compuesta por ID_Usuario y ID_Rut
+    FOREIGN KEY (ID_Usuario) REFERENCES Usuario(ID_Usuario),
+    FOREIGN KEY (ID_Rut) REFERENCES Rutina(ID_Rut)
 );
 
 insert into Agrega (ID_Usuario, ID_Rut)
 values (1, 'RUT1'),
 (2, 'RUT2');
+
+
+
 
 create table Integra (
 ID_Usuario int,
@@ -236,18 +268,6 @@ foreign key (ID_Pro) references Producto(ID_Pro)
 );
 
 insert into Añade (ID_Usuario, ID_Pro)
-values (1, 'PROD1'),
-(2, 'PROD2');
-
-create table Selecciona (
-ID_Usuario int,
-ID_Pro varchar(255),
-primary key (ID_Pro),
-foreign key (ID_Usuario) references Usuario(ID_Usuario),
-foreign key (ID_Pro) references Producto(ID_Pro)
-);
-
-insert into Selecciona (ID_Usuario, ID_Pro)
 values (1, 'PROD1'),
 (2, 'PROD2');
 
@@ -312,45 +332,35 @@ values ('CART1', 'COMP1'),
 ('CART2', 'COMP2');
 
 create table F_Crea (
-ID_Compra varchar(255),
-ID_Fact varchar(255),
-primary key (ID_Compra),
-foreign key (ID_Compra) references Compra(ID_Compra),
-foreign key (ID_Fact) references Factura(ID_Fact)
+	ID_Usuario int, 
+    ID_Compra varchar(255),
+    ID_Fact varchar(255),
+    primary key (ID_Compra),
+	foreign key (ID_Usuario) references Usuario(ID_Usuario),
+    foreign key (ID_Compra) references Compra(ID_Compra),
+    foreign key (ID_Fact) references Factura(ID_Fact)
 );
 
-insert into F_Crea (ID_Compra, ID_Fact)
-values ('COMP1', 'FACT1'),
-('COMP2', 'FACT2');
+insert into F_Crea (ID_Usuario, ID_Compra, ID_Fact)
+values (1, 'COMP1', 'FACT1');
 
+create table Tienen (
+ID_Ben varchar(255) primary key,
+ID_Sucursal varchar(255),
+foreign key (ID_Ben) references Beneficios(ID_Ben),
+foreign key (ID_Sucursal) references Sucursal(ID_Sucursal));
+
+create table Trabaja (
+ID_Usuario int primary key,
+ID_Sucursal varchar(255),
+	foreign key (ID_Usuario) references Usuario(ID_Usuario),
+foreign key (ID_Sucursal) references Sucursal(ID_Sucursal));
 -- Consultas
 
 -- Clientes
 select * from Usuario;
 
--- Clientes y sus Subscripciones
-SELECT 
-    c.Nombre, c.Apellidos, s.Plan_Sub
-FROM
-    Cliente c
-        JOIN
-    Elige e ON c.ID_Usuario = e.ID_Cliente
-        JOIN
-    Subscripcion s ON e.ID_Subs = s.ID_Subs;
-    
-    
-    
-    SELECT 1 FROM Elige WHERE ID_Cliente = 6;
-    
-    
-    DESCRIBE Elige;
-DESCRIBE Ofrece;
-DESCRIBE S_Guarda;
-DESCRIBE Compra;
-DESCRIBE Factura;
-DESCRIBE Subscripcion;
-
-SELECT ID_Subs, Plan_Sub, Tipo, Precio, Estado FROM Subscripcion WHERE Estado = 'Activa' ;
-    
-    select * from Elige;
-    SELECT Nombre, Apellidos, Cedula, Edad, Peso, Altura, Centro_salud, Fecha_registro FROM Cliente WHERE ID_Usuario = 5
+select c.ID_Usuario, c.Nombre, c.Apellidos, u.Correo_usu 
+from Cliente c 
+join Usuario u 
+on c.ID_Usuario = u.ID_Usuario;
