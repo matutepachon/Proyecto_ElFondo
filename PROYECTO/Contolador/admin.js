@@ -37,23 +37,22 @@ document.addEventListener("DOMContentLoaded", function() {
             .then(data => {
                 const tabladeUsu = document.getElementById("tabladeUsu");
                 tabladeUsu.innerHTML = "";
-    
+
                 if (data.success) {
                     data.usuarios.forEach(usuario => {
                         const row = document.createElement("tr");
                         row.innerHTML = `
                             <td>${usuario.ID_Usuario}</td>
-                            <td>${usuario.Nombre_Completo}</td>
+                            <td>${usuario.Nombre}</td>
+                            <td>${usuario.Apellidos}</td>
                             <td>${usuario.Correo_usu}</td>
-                            <td>${usuario.Estado_Suscripción}</td>
                             <td>
                                 <button class="btn btn-danger BorraUsu" data-id="${usuario.ID_Usuario}">Eliminar</button>
                             </td>
                         `;
                         tabladeUsu.appendChild(row);
                     });
-    
-                    // Asignar eventos a los botones de eliminar
+   
                     document.querySelectorAll(".BorraUsu").forEach(button => {
                         button.addEventListener("click", function() {
                             const usuarioId = this.getAttribute("data-id");
@@ -75,8 +74,11 @@ document.addEventListener("DOMContentLoaded", function() {
                                         },
                                         body: new URLSearchParams({ usuario_id: usuarioId })
                                     })
-                                    .then(response => response.json())
+                                    .then(response => {
+                                        return response.json();
+                                    })
                                     .then(data => {
+                                        console.log(data);
                                         if (data.success) {
                                             Swal.fire({
                                                 width: 250,
@@ -100,11 +102,13 @@ document.addEventListener("DOMContentLoaded", function() {
                                             background: "Red",
                                             color: "White",
                                             position: "top",
-                                            title: "Ocurrió un error al borrar el usuario",
+                                            title: "Ocurrio un error al borrar el Usuario",
                                             showConfirmButton: false,
                                             timer: 1500
                                         });
                                     });
+                                    
+                                    
                                 }
                             });
                         });
@@ -126,7 +130,6 @@ document.addEventListener("DOMContentLoaded", function() {
                 });
             });
     }
-    
     
     loadUsers();
 

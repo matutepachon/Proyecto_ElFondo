@@ -15,14 +15,18 @@ if (isset($data['idSuscripcion'])) {
 
     include('../configuracion/conexion.php');
 
+    // Guardamos la suscripción con estado pendiente en la tabla 'Elige'
     $query = "INSERT INTO Elige (ID_Cliente, ID_Subs) VALUES (?, ?)";
 
     if ($stmt = $conn->prepare($query)) {
         $stmt->bind_param("is", $idUsuario, $idSuscripcion); 
         
         if ($stmt->execute()) {
-            $_SESSION["idSuscripcion"]= $idSuscripcion;
-            echo json_encode(['success' => true, 'message' => 'Te has suscrito exitosamente.']);
+            // Guardamos el ID de la suscripción en la sesión para usarlo posteriormente
+            $_SESSION["idSuscripcion"] = $idSuscripcion;
+
+            // En este punto solo estamos registrando la suscripción con estado pendiente
+            echo json_encode(['success' => true, 'message' => 'Suscripción pendiente. Por favor, completa el pago para finalizar la suscripción.']);
         } else {
             echo json_encode(['success' => false, 'error' => 'No se pudo suscribir.']);
         }

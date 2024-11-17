@@ -60,8 +60,8 @@ class Carrito {
 const carrito = new Carrito();
 
 function mostrarCarrito() {
-    const container = document.getElementById("carrito");
-    container.innerHTML = ' ';
+    const container = document.getElementById("carrito1");
+    container.innerHTML = '';
 
     carrito.obtenerProductos().forEach(producto => {
         const col = document.createElement("div");
@@ -154,11 +154,28 @@ function mostrarCarrito() {
         const deleteButton = document.createElement("a");
         deleteButton.className = "text-danger";
         deleteButton.innerHTML = '<i class="fas fa-trash fa-lg"></i>';
-        deleteButton.onclick = () => {
-            carrito.eliminarProducto(producto.id);
-            mostrarCarrito();
-            verificarCarrito();
-            Toastify({ text: `${producto.nombre} ha sido eliminado del carrito.`, duration: 3000 }).showToast();
+        deleteButton.onclick = async () => {
+            // Llamar al servidor para eliminar el producto del carrito
+            try {
+                const response = await fetch('../Modulos/carrito.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ idProducto: producto.id })
+                });
+                const result = await response.json();
+                if (result.success) {
+                    carrito.eliminarProducto(producto.id);
+                    mostrarCarrito();
+                    verificarCarrito();
+                    Toastify({ text: `${producto.nombre} ha sido eliminado del carrito.`, duration: 3000 }).showToast();
+                } else {
+                    console.error('Error al eliminar el producto:', result.error);
+                }
+            } catch (error) {
+                console.error('Error de red:', error);
+            }
         };
 
         deleteCol.appendChild(deleteButton);
@@ -217,7 +234,6 @@ function mostrarCarrito() {
                     showConfirmButton: false,
                     timer: 1500
                 });
-                
             }
         }).render('#paypal-button-container');
     }
@@ -227,12 +243,16 @@ function mostrarCarrito() {
 
 function verificarCarrito() {
     const carritoProductos = carrito.obtenerProductos();
-    const botonComprar = document.getElementById("btnComprar"); 
+    const botonComprar = document.getElementById("btnComprar");
 
-    if (carritoProductos.length === 0) {
-        botonComprar.style.display = "none"; 
-     } else {
-        botonComprar.style.display = "block"; 
+    if (botonComprar) { // Verificar si el botón existe
+        if (carritoProductos.length === 0) {
+            botonComprar.style.display = "none"; // Si no hay productos en el carrito, ocultar el botón
+        } else {
+            botonComprar.style.display = "block"; // Si hay productos, mostrar el botón
+        }
+    } else {
+        console.error("El botón de comprar no fue encontrado en el DOM.");
     }
 }
 
